@@ -51,6 +51,7 @@ object MiscSettings : Settings {
     val disableSfHwcBackpressure = "key_misc_disable_sf_hwc_backpressure"
     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
     val escoTransportUnitSize = "key_misc_esco_transport_unit_size"
+    val treatVirtualSensorsAsReal = "key_misc_treat_virtual_sensors_as_real"
 
     override fun enabled() = true
 }

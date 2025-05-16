@@ -215,6 +215,11 @@
             android:key="key_misc_secure_adb"
             android:title="Secure adb"
             android:summary="Computer requires approval" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="key_misc_treat_virtual_sensors_as_real"
+            android:title="Treat virtual sensors as real"
+            android:summary="Treat all virtual fingerprint sensors as real\nRequires a reboot" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Debugging">
         <Preference android:title="Debug Sensors">
