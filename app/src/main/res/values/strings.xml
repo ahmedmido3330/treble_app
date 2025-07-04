@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">PhhTrebleApp</string>
+    <string name="app_name">Treble Settings</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_top_level">Phh Treble Settings</string>
+    <string name="title_activity_top_level">Treble Settings</string>
     <string name="desc_activity_top_level">Device specific settings</string>
-    <string name="remove_telephony_subsystem">Remove Telephony Subsystem</string>
     <string name="continue_question">Continue?</string>
     <string name="title_activity_updater">Updater</string>
     <string name="update_not_found_title">Your system is up to date</string>
@@ -25,5 +24,17 @@
     <string name="warning_dialog_title">Warning</string>
     <string name="magisk_exists_message">Magisk was detected! If you proceed with the update you may lose Magisk or the installation may fail!</string>
     <string name="menu_delete_ota">Delete OTA files</string>
-    <string name="delete_ota_message">Take in consideration that you may lose your userdata if you proceed!\nTo prevent this, cancel this dialog, reboot and flash the latest update on fastboot mode.\nDo you want to proceed anyway?</string>
+    <string name="delete_ota_message">Take in consideration that you may lose your userdata if you proceed!\nTo prevent this, cancel this dialog, reboot and flash the latest update on fastboot mode.\n\nDo you want to proceed anyway?</string>
+    <string name="toast_download_start">Downloading OTA package</string>
+    <string name="toast_download_finished">OTA package downloaded</string>
+    <string name="toast_download_fail">Failed downloading OTA package</string>
+    <string name="toast_install_done">OTA image successfully installed</string>
+    <string name="toast_install_fail">Failed installing OTA image</string>
+    <string name="toast_delete_cache">Packages cache deleted</string>
+    <string name="toast_reboot">Reboot your device to apply changes</string>
+    <string name="update_props">Updating Props</string>
+    <string name="props_summary">Will bash from an URL, continue?</string>
+    <string name="restart_system_ui">Restarting System UI</string>
+    <string name="reset_simcount">Reset SIM Count</string>
+    <string name="reset_simcount_summary">Requires a reboot, continue?</string>
 </resources>

@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:textAlignment="textStart"
+            android:autoLink="web"
             style="@style/TextAppearance.AppCompat.Body2" />
         <ProgressBar
             android:id="@+id/progress_horizontal"
@@ -63,9 +64,11 @@
         android:layout_weight="0">
         <Button
             android:id="@+id/btn_update"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:text="@string/update_not_found_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="bottom|right" />
     </FrameLayout>
 </LinearLayout>

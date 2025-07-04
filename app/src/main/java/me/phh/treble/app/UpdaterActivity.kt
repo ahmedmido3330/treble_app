@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast;
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -90,7 +91,7 @@ class UpdaterActivity : PreferenceActivity() {
                     Log.e("PHH", "Delete in progress")
                     SystemProperties.set("sys.phh.uninstall-ota", "true");
                 }
-                builder.setNegativeButton(android.R.string.no) { _, _ -> 
+                builder.setNegativeButton(android.R.string.no) { _, _ ->
                     Log.e("PHH", "Delete canceled")
                 }
                 builder.show()
@@ -157,13 +158,19 @@ class UpdaterActivity : PreferenceActivity() {
 
         val update_title = findViewById(R.id.txt_update_title) as TextView
         val update_description = findViewById(R.id.txt_update_description) as TextView
-        var update_description_text = "Android version: " + getAndroidVersion() + "\n"
-        update_description_text += "GSI variant: " + getVariant() + "\n"
+
+        var update_description_text = getGSIName() + "\n\n"
+        update_description_text += "Android version: " + getAndroidVersion() + "\n"
+        update_description_text += "Build variant: " + getVariant() + "\n"
         update_description_text += "Security patch: " + getPatchDate() + "\n\n"
 
         if (hasUpdate) {
-            update_description_text += "Update version: " + getUpdateVersion() + "\n"
-            update_description_text += "Download size: " + getUpdateSize()
+            update_description_text += "••••••••••••••• \n\n"
+            update_description_text += "Update available: " + getUpdateVersion() + "\n"
+            update_description_text += "Build variant: " + getBuildVariant() + "\n"
+            update_description_text += "Download size: " + getUpdateSize() + "\n\n"
+            update_description_text += "CHANGELOG: \n" + getChangelogUrl() + "\n"
+
             update_title.text = getString(R.string.update_found_title)
             btn_update.text = getString(R.string.update_found_button)
         } else if (!wasUpdated) {
@@ -182,6 +189,50 @@ class UpdaterActivity : PreferenceActivity() {
         Log.e("PHH", "Security patch date: " + patchDate)
         val localDate = LocalDate.parse(patchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         return localDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+    }
+
+    private fun deletePackageCache() {
+        val PackageCache = File("/data/system/package_cache")
+        try {
+            PackageCache.deleteRecursively()
+            Log.d("PHH", "Deleted package_cache successfully.")
+            Toast.makeText(this, R.string.toast_delete_cache, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_reboot, Toast.LENGTH_LONG).show();
+        } catch (e: Exception) {
+            Log.e("PHH", "Failed deleting package_cache. Error: " + e.toString(), e)
+        }
+    }
+
+    private fun getGSIName() : String {
+        if (otaJson.length() > 0) {
+            return otaJson.getString("gsi")
+        }
+        Log.e("PHH", "OTA json is empty")
+        return ""
+    }
+
+    private fun getChangelogUrl() : String {
+        if (otaJson.length() > 0) {
+            return otaJson.getString("changelog")
+        }
+        Log.e("PHH", "OTA json is empty")
+        return ""
+    }
+
+    private fun getBuildVariant() : String {
+        if (otaJson.length() > 0) {
+            var otaVariants = otaJson.getJSONArray("variants")
+            Log.e("PHH", "OTA variants found: " + otaVariants.length())
+            for (i in 0 until otaVariants.length()) {
+                val otaVariant = otaVariants.get(i) as JSONObject
+                val otaVariantName = otaVariant.getString("name")
+                if (otaVariantName == getVariant()) {
+                    return otaVariantName;
+                }
+            }
+        }
+        Log.e("PHH", "OTA json is empty")
+        return ""
     }
 
     private fun getUpdateVersion() : String {
@@ -261,17 +312,7 @@ class UpdaterActivity : PreferenceActivity() {
     }
 
     private fun getVariant() : String {
-        var flavor = SystemProperties.get("ro.build.flavor").replace(Regex("-user(debug)?"), "")
-        val secure = File("/system/phh/secure")
-        var vndklite = File("/system_ext/apex/com.android.vndk.v29/lib64/vendor.qti.qcril.am@1.0.so")
-        if (flavor.contains("_a64_")) {
-            vndklite = File("/system_ext/apex/com.android.vndk.v29/lib/libstdc++.so")
-        }
-        if (secure.exists()) {
-            flavor += "-secure"
-        } else if (vndklite.exists()) {
-            flavor += "-vndklite"
-        }
+        var flavor = SystemProperties.get("persist.sys.phh.buildvariant")
         Log.e("PHH", "Device variant is: " + flavor)
         return flavor
     }
@@ -346,13 +387,16 @@ class UpdaterActivity : PreferenceActivity() {
                         runOnUiThread(Runnable {
                             val builder = AlertDialog.Builder(this)
                             if (hasSuccess) {
+                                Toast.makeText(this, R.string.toast_install_done, Toast.LENGTH_LONG).show();
                                 builder.setTitle(getString(R.string.title_activity_updater))
                                 builder.setMessage(getString(R.string.success_install_message))
+                                deletePackageCache()
                             } else {
                                 progress_bar.setVisibility(View.GONE)
                                 progress_text.setVisibility(View.GONE)
                                 builder.setTitle(getString(R.string.error_dialog_title))
                                 builder.setMessage(getString(R.string.failed_install_message))
+                                Toast.makeText(this, R.string.toast_install_fail, Toast.LENGTH_SHORT).show();
                             }
                             builder.setPositiveButton(android.R.string.ok) { _, _ -> }
                             builder.show()
@@ -364,6 +408,7 @@ class UpdaterActivity : PreferenceActivity() {
                 }
             } catch (e: Exception) {
                 Log.e("PHH", "Failed downloading OTA image. Error: " + e.toString(), e)
+                Toast.makeText(this, R.string.toast_download_fail, Toast.LENGTH_SHORT).show();
                 progress_bar.setVisibility(View.GONE)
                 progress_text.setVisibility(View.GONE)
                 val builder = AlertDialog.Builder(this)
@@ -407,6 +452,7 @@ class UpdaterActivity : PreferenceActivity() {
         val update_title = findViewById(R.id.txt_update_title) as TextView
 
         runOnUiThread(Runnable {
+            Toast.makeText(this, R.string.toast_download_start, Toast.LENGTH_SHORT).show();
             update_title.text = getString(R.string.downloading_update_title)
             progress_bar.setIndeterminate(false)
             progress_bar.setProgress(0)
@@ -489,6 +535,7 @@ class UpdaterActivity : PreferenceActivity() {
         val update_title = findViewById(R.id.txt_update_title) as TextView
 
         runOnUiThread(Runnable {
+            Toast.makeText(this, R.string.toast_download_finished, Toast.LENGTH_SHORT).show();
             update_title.text = getString(R.string.applying_update_title)
             progress_text.text = "Switching slot..."
             progress_bar.setVisibility(View.VISIBLE)

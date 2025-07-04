@@ -3,18 +3,14 @@ package me.phh.treble.app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.hardware.display.DisplayManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Parcel
 import android.os.ServiceManager
 import android.os.SystemProperties
 import android.preference.PreferenceManager
-import android.provider.Settings
 import android.util.Log
-import dalvik.system.PathClassLoader
 import java.lang.ref.WeakReference
 
 @SuppressLint("StaticFieldLeak")
@@ -53,9 +49,13 @@ object Ims: EntryStartup {
             }
             ImsSettings.forceEnableSettings -> {
                 val value = if(sp.getBoolean(key, false)) "1" else "0"
-                Misc.safeSetprop("persist.dbg.volte_avail_ovr", value)
-                Misc.safeSetprop("persist.dbg.wfc_avail_ovr", value)
-                Misc.safeSetprop("persist.dbg.allow_ims_off", value)
+                Tools.safeSetprop("persist.dbg.volte_avail_ovr", value)
+                Tools.safeSetprop("persist.dbg.wfc_avail_ovr", value)
+                Tools.safeSetprop("persist.dbg.allow_ims_off", value)
+            }
+            ImsSettings.allowBinderThread -> {
+                val value = sp.getBoolean(key, false)
+                Tools.safeSetprop("persist.sys.phh.allow_binder_thread_on_incoming_calls", if(value) "1" else "0")
             }
         }
     }
@@ -76,7 +76,7 @@ object Ims: EntryStartup {
     val gotQcomHidl = mAllSlots
             .find { i -> mHidlService.get("vendor.qti.hardware.radio.ims@1.0::IImsRadio", i) != null } != null
     val gotQcomHidlMoto = gotQcomHidl
-            && SystemProperties.get("ro.product.vendor.brand", "N/A").equals("motorola")
+            && SystemProperties.get("ro.product.vendor.brand", "").equals("motorola")
     val gotQcomAidl = mAllSlots
             .find { i -> ServiceManager.getService("vendor.qti.hardware.radio.ims.IImsRadio/" + i) != null } != null
     val gotSLSI = mAllSlots
@@ -87,7 +87,8 @@ object Ims: EntryStartup {
             .find { i -> mHidlService.get("vendor.huawei.hardware.radio@1.0::IRadio", i) != null } != null
 
     override fun startup(ctxt: Context) {
-        if (!ImsSettings.enabled()) return
+        Log.d("PHH", "Loading IMS fragment")
+
         val gotFloss = ctxt.packageManager.getInstalledPackages(0).find { it.packageName == "me.phh.ims" } != null
 
         val sp = PreferenceManager.getDefaultSharedPreferences(ctxt)
@@ -106,9 +107,9 @@ object Ims: EntryStartup {
             else -> null
         }
         if (gotFloss) {
-            Misc.safeSetprop("persist.sys.phh.ims.floss", "true")
+            Tools.safeSetprop("persist.sys.phh.ims.floss", "true")
         } else {
-            Misc.safeSetprop("persist.sys.phh.ims.floss", "false")
+            Tools.safeSetprop("persist.sys.phh.ims.floss", "false")
         }
         if(selectOverlay != null) {
             allOverlays
@@ -117,7 +118,7 @@ object Ims: EntryStartup {
             OverlayPicker.setOverlayEnabled(selectOverlay, true)
         }
 
-        //Refresh parameters on boot
+        // Refresh parameters on boot
         spListener.onSharedPreferenceChanged(sp, ImsSettings.requestNetwork)
     }
 }
