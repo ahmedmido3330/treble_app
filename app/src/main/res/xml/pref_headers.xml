@@ -1,7 +1,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="SHOW YOUR LOVE &amp; SYSTEM UDPATES">
+    <PreferenceCategory android:title="GROUP">
         <Preference android:title="GSI Support Group"
             android:icon="@drawable/user"
             android:summary="Join">
@@ -133,7 +133,7 @@
             android:icon="@drawable/debug" />
     </PreferenceCategory>
 
-    <Preference android:iconSpaceReserved="true" android:summary="This app has been developed by phhusson">
+    <Preference android:iconSpaceReserved="true" android:summary="This app has been developed by phhusson, credits chondoe">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/phhusson/treble_app" />
