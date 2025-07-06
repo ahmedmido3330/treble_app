@@ -19,6 +19,8 @@ object UiSettings : Settings {
     val statusbarpaddingtop = "key_ui_sb_padding_top"
     val statusbarpaddingstart = "key_ui_sb_padding_start"
     val statusbarpaddingend = "key_ui_sb_padding_end"
+    val qsclockleftpadding = "key_misc_qs_clock_left_padding"
+    val qsclockrightpadding = "key_misc_qs_clock_right_padding"
     val restartSystemUI = "key_ui_restart_systemui"
 
     val stateMap = mapOf(

@@ -66,6 +66,22 @@
                     android:inputType="number"
                     android:hint="Requires SystemUI restart"
                     android:summary="Requires SystemUI restart" />
+                <EditTextPreference
+                    android:layout="@layout/preference_edittext_custom"
+                    android:defaultValue="-1"
+                    android:key="key_misc_qs_clock_left_padding"
+                    android:title="Set quick settings clock left padding"
+                    android:inputType="number"
+                    android:hint="Requires SystemUI restart"
+                    android:summary="Requires a SystemUI restart" />
+                <EditTextPreference
+                    android:layout="@layout/preference_edittext_custom"
+                    android:defaultValue="-1"
+                    android:key="key_misc_qs_clock_right_padding"
+                    android:title="Set quick settings clock right padding"
+                    android:inputType="number"
+                    android:hint="Requires SystemUI restart"
+                    android:summary="Requires a SystemUI restart" />
         </PreferenceCategory>
 
         <PreferenceCategory
