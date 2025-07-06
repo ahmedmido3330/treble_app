@@ -1,8 +1,16 @@
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="GROUP">
-        <Preference android:title="GSI Support Group"
+    <Preference
+        android:layout="@layout/preference_header"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="GROUP"
+        android:layout="@layout/preference_category_custom">
+        <Preference
+            android:layout="@layout/preference_custom"
+            android:title="GSI Support Group"
             android:icon="@drawable/user"
             android:summary="Join">
             <intent
@@ -11,129 +19,211 @@
         </Preference>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nDEVICE SPECIFIC">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="DEVICE SPECIFIC"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="asus_settings"
             android:title="Asus settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="mydevice_settings"
             android:title="My device"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="mediatek_settings"
             android:title="Mediatek settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="qualcomm_settings"
             android:title="Qualcomm settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="oneplus_settings"
             android:title="OnePlus settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="nubia_settings"
             android:title="Nubia settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="vsmart_settings"
             android:title="Vsmart settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="huawei_settings"
             android:title="Huawei settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="samsung_settings"
             android:title="Samsung settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="transsion_settings"
             android:title="Transsion settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="lenovo_settings"
             android:title="Lenovo settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="xiaomi_settings"
             android:title="Xiaomi settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="oppo_settings"
             android:title="Oppo settings"
             android:icon="@drawable/devices" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="doze_settings"
             android:title="Doze settings"
             android:icon="@drawable/doze" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nDISPLAY">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="DISPLAY"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="display_settings"
             android:title="Display settings"
             android:summary="Backlight, refresh rate and more"
             android:icon="@drawable/display"/>
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="ui_settings"
             android:title="User interface"
             android:summary="Layouts, paddings, icons and others"
             android:icon="@drawable/ui"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nAUDIO">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="AUDIO"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="audio_settings"
             android:title="Audio settings"
             android:summary="Bluetooth and general fixes"
             android:icon="@drawable/audio" />
+
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="audiofx_settings"
             android:title="Audio effects"
             android:summary="Audio modifications pre-included by your vendor"
             android:icon="@drawable/audiofx" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nTELEPHONY">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="TELEPHONY"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="telephony_settings"
             android:title="Telephony settings"
             android:summary="Telephony, signal, ril and 5G options"
             android:icon="@drawable/telephony" />
+
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="ims_settings"
             android:title="IMS settings"
             android:summary="VoLTE is here"
             android:icon="@drawable/ims" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nCAMERA">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="CAMERA"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="camera_settings"
             android:title="Camera settings"
             android:summary="Useful camera things"
             android:icon="@drawable/camera" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nMISCELLANEOUS">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="MISCELLANEOUS"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="misc_settings"
             android:title="Misc settings"
-            android:summary="Not so much useful options"
+            android:summary="Fingerprint fix and other stuff"
             android:icon="@drawable/miscellaneous" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="\nDEBUGGING">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <PreferenceCategory
+        android:title="DEBUGGING"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:key="debug_settings"
             android:title="Debug settings"
-            android:summary="Debug sensors, insecure adb remote access"
+            android:summary="Debug sensors"
             android:icon="@drawable/debug" />
     </PreferenceCategory>
 
-    <Preference android:iconSpaceReserved="true" android:summary="This app has been developed by phhusson, credits chondoe">
+    <Preference
+        android:layout="@layout/preference_space"
+        android:selectable="false"
+        android:enabled="false" />
+
+    <Preference
+        android:layout="@layout/preference_custom"
+        android:iconSpaceReserved="true"
+        android:summary="This app has been developed by phhusson">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/phhusson/treble_app" />

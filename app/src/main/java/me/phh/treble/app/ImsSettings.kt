@@ -10,13 +10,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.SystemProperties
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.telephony.TelephonyManager
 import android.util.Log
-import dalvik.system.PathClassLoader
+import android.view.View
+import android.widget.ListView
 import android.widget.Toast
+import dalvik.system.PathClassLoader
 import java.io.FileInputStream
-
 
 object ImsSettings : Settings {
     val requestNetwork = "key_ims_request_network"
@@ -52,83 +54,100 @@ class ImsSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_ims)
 
-        fun updateImsPackageSummary() {
-            val packageSummaryPref = findPreference("key_ims_install_apn")
-            val packagesToCheck = listOf(
-                "org.codeaurora.ims",
-                "com.mediatek.ims",
-                "me.phh.ims"
-            )
-
-            val installedPackages = Tools.isPackageInstalled(activity?.applicationContext!!, packagesToCheck)
-            if (installedPackages.isNotEmpty()) {
-                packageSummaryPref?.summary = "Installed packages: ${installedPackages.joinToString()}"
-            } else {
-                packageSummaryPref?.summary = "No IMS packages installed"
-            }
+        // Setup IMS package summary
+        val packageSummaryPref = findPreference("key_ims_install_apn")
+        val packagesToCheck = listOf(
+            "org.codeaurora.ims",
+            "com.mediatek.ims",
+            "me.phh.ims"
+        )
+        val installedPackages = activity?.applicationContext?.let { ctx ->
+            Tools.isPackageInstalled(ctx, packagesToCheck)
         }
-
-        updateImsPackageSummary()
-
-        val createApn = findPreference(ImsSettings.createApn)
-        val cursor = Tools.checkIfApnExists(activity?.applicationContext!!, "PHH IMS")
-        if (cursor != null && cursor.moveToFirst()) {
-            Log.d("PHH", "APN PHH IMS already exists")
-            createApn.summary = "APN PHH IMS already exists"
+        packageSummaryPref?.summary = if (!installedPackages.isNullOrEmpty()) {
+            "Installed packages: ${installedPackages.joinToString()}"
         } else {
-            Log.d("PHH", "APN PHH IMS does not exist")
-            createApn.summary = "No APN PHH IMS found"
+            "No IMS packages installed"
         }
 
-        createApn!!.setOnPreferenceClickListener {
-            Log.d("PHH", "Adding \"ims\" APN")
+        // Setup APN creation
+        val createApn = findPreference(ImsSettings.createApn)
+        val cursor = activity?.applicationContext?.let { ctx ->
+            Tools.checkIfApnExists(ctx, "PHH IMS")
+        }
+        createApn?.summary = if (cursor != null && cursor.moveToFirst()) {
+            "APN PHH IMS already exists"
+        } else {
+            "No APN PHH IMS found"
+        }
+        cursor?.close()
 
-            val tm = activity?.getSystemService(TelephonyManager::class.java)
-            val operator = tm?.simOperator
-            if (operator.isNullOrEmpty()) {
-                Log.d("PHH", "No current carrier, bailing out")
-                return@setOnPreferenceClickListener true
-            }
-
-            val mcc = operator.substring(0, 3)
-            val mnc = operator.substring(3)
-            Log.d("PHH", "Got mcc = $mcc and mnc = $mnc")
-
-            val cr = activity?.contentResolver ?: return@setOnPreferenceClickListener true
-
-            Log.d("PHH", "Adding our own PHH IMS")
-
-            val cv = ContentValues().apply {
-                put("name", "PHH IMS")
-                put("apn", "ims")
-                put("type", "ims")
-                put("edited", "1")
-                put("user_editable", "1")
-                put("user_visible", "1")
-                put("protocol", "IPV4V6")
-                put("roaming_protocol", "IPV6")
-                put("modem_cognitive", "1")
-                put("numeric", operator)
-                put("mcc", mcc)
-                put("mnc", mnc)
-            }
-
-            val res = cr.insert(Uri.parse("content://telephony/carriers"), cv)
-
-            if (res != null) {
-                Log.d("PHH", "Insert APN returned $res")
-                createApn.summary = "IMS APN successfully added"
-            } else {
-                Log.d("PHH", "Failed to add IMS APN")
-                createApn.summary = "Failed to add IMS APN"
-            }
-
-            return@setOnPreferenceClickListener true
+        createApn?.setOnPreferenceClickListener {
+            handleApnCreation()
+            true
         }
 
+        // Setup IMS installation
         val installIms = findPreference(ImsSettings.installImsApk)
+        logRadioInfo()
+        val (url, message) = determineImsPackage()
+        installIms?.title = "Install IMS APK for $message"
+        installIms?.setOnPreferenceClickListener {
+            downloadAndInstallIms(url)
+            true
+        }
 
-        // Logging
+        Log.d("PHH", "IMS settings loaded successfully")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
+        }
+    }
+
+    private fun handleApnCreation() {
+        val tm = activity?.getSystemService(TelephonyManager::class.java)
+        val operator = tm?.simOperator ?: run {
+            Log.d("PHH", "No current carrier, bailing out")
+            return
+        }
+
+        val mcc = operator.substring(0, 3)
+        val mnc = operator.substring(3)
+        Log.d("PHH", "Got mcc = $mcc and mnc = $mnc")
+
+        val cr = activity?.contentResolver ?: return
+        val cv = ContentValues().apply {
+            put("name", "PHH IMS")
+            put("apn", "ims")
+            put("type", "ims")
+            put("edited", "1")
+            put("user_editable", "1")
+            put("user_visible", "1")
+            put("protocol", "IPV4V6")
+            put("roaming_protocol", "IPV6")
+            put("modem_cognitive", "1")
+            put("numeric", operator)
+            put("mcc", mcc)
+            put("mnc", mnc)
+        }
+
+        val res = cr.insert(Uri.parse("content://telephony/carriers"), cv)
+        findPreference(ImsSettings.createApn)?.summary = if (res != null) {
+            "IMS APN successfully added"
+        } else {
+            "Failed to add IMS APK"
+        }
+    }
+
+    private fun logRadioInfo() {
         Log.d("PHH", "MTK P radio = ${Ims.gotMtkP}")
         Log.d("PHH", "MTK Q radio = ${Ims.gotMtkQ}")
         Log.d("PHH", "MTK R radio = ${Ims.gotMtkR}")
@@ -136,101 +155,85 @@ class ImsSettingsFragment : PreferenceFragment() {
         Log.d("PHH", "MTK AIDL radio = ${Ims.gotMtkAidl}")
         Log.d("PHH", "Qualcomm HIDL radio = ${Ims.gotQcomHidl}")
         Log.d("PHH", "Qualcomm AIDL radio = ${Ims.gotQcomAidl}")
+    }
 
+    private fun determineImsPackage(): Pair<String, String> {
         val signSuffix = if (ImsSettings.checkHasPhhSignature()) "-resigned" else ""
-        val (url, message) = when {
+        return when {
             (Ims.gotMtkR || Ims.gotMtkS || Ims.gotMtkAidl) && Build.VERSION.SDK_INT >= 34 ->
-                Pair(
-                    "https://treble.phh.me/ims-mtk-u$signSuffix.apk",
-                    "MediaTek R+ vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/ims-mtk-u$signSuffix.apk",
+                 "MediaTek R+ vendor"
+            )
             Ims.gotMtkP ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-mtk-p$signSuffix.apk",
-                    "MediaTek P vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-mtk-p$signSuffix.apk",
+                 "MediaTek P vendor"
+            )
             Ims.gotMtkQ ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-mtk-q$signSuffix.apk",
-                    "MediaTek Q vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-mtk-q$signSuffix.apk",
+                 "MediaTek Q vendor"
+            )
             Ims.gotMtkR ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-mtk-r$signSuffix.apk",
-                    "MediaTek R vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-mtk-r$signSuffix.apk",
+                 "MediaTek R vendor"
+            )
             Ims.gotMtkS ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-mtk-s$signSuffix.apk",
-                    "MediaTek S vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-mtk-s$signSuffix.apk",
+                 "MediaTek S vendor"
+            )
             (Ims.gotQcomHidlMoto && SystemProperties.getInt("ro.vndk.version", -1) <= 31) ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-caf-moto$signSuffix.apk",
-                    "Qualcomm pre-S vendor (Motorola)"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-caf-moto$signSuffix.apk",
+                 "Qualcomm pre-S vendor (Motorola)"
+            )
             (Ims.gotQcomHidl || Ims.gotQcomAidl) && Build.VERSION.SDK_INT >= 34 ->
-                Pair(
-                    "https://treble.phh.me/ims-caf-u$signSuffix.apk",
-                    "Qualcomm vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/ims-caf-u$signSuffix.apk",
+                 "Qualcomm vendor"
+            )
             Ims.gotQcomHidl ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-q.64$signSuffix.apk",
-                    "Qualcomm pre-S vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-q.64$signSuffix.apk",
+                 "Qualcomm pre-S vendor"
+            )
             Ims.gotQcomAidl ->
-                Pair(
-                    "https://treble.phh.me/stable/ims-caf-s$signSuffix.apk",
-                    "Qualcomm S+ vendor"
-                )
-
+            Pair(
+                "https://treble.phh.me/stable/ims-caf-s$signSuffix.apk",
+                 "Qualcomm S+ vendor"
+            )
             else ->
                 Pair(
                     "https://github.com/ChonDoit/treble_ims/releases/download/A14-QPR3/floss-ims-19.apk",
-                    "FLOSS IMS -WIP-"
+                     "FLOSS IMS -WIP-"
                 )
         }
+    }
 
-        installIms!!.title = "Install IMS APK for $message"
-        installIms.setOnPreferenceClickListener {
-            Toast.makeText(activity, "Downloading IMS APK", Toast.LENGTH_SHORT).show()
+    @SuppressLint("Range")
+    private fun downloadAndInstallIms(url: String) {
+        val context = activity ?: return
+        Toast.makeText(context, "Downloading IMS APK", Toast.LENGTH_SHORT).show()
 
-            val dm = activity?.getSystemService(DownloadManager::class.java)
-                ?: return@setOnPreferenceClickListener true
+        val dm = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val downloadRequest = DownloadManager.Request(Uri.parse(url)).apply {
+            setTitle("IMS APK")
+            setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            setDestinationInExternalFilesDir(
+                context,
+                Environment.DIRECTORY_DOWNLOADS,
+                "ims.apk"
+            )
+        }
 
-            val downloadRequest = DownloadManager.Request(Uri.parse(url)).apply {
-                setTitle("IMS APK")
-                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                setDestinationInExternalFilesDir(
-                    activity,
-                    Environment.DIRECTORY_DOWNLOADS,
-                    "ims.apk"
-                )
-            }
+        val myId = dm.enqueue(downloadRequest)
 
-            val myId = dm.enqueue(downloadRequest)
-
-            activity?.registerReceiver(object : BroadcastReceiver() {
-                @SuppressLint("Range")
-                override fun onReceive(context: Context, intent: Intent) {
-                    Log.d(
-                        "PHH",
-                        "Received download completed with intent $intent ${intent.data}"
-                    )
-                    if (intent.getLongExtra(
-                            DownloadManager.EXTRA_DOWNLOAD_ID,
-                            -1L
-                        ) != myId
-                    ) return
+        context.registerReceiver(object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L) != myId) return
 
                     val query = DownloadManager.Query().setFilterById(myId)
                     val cursor = dm.query(query)
@@ -239,58 +242,53 @@ class ImsSettingsFragment : PreferenceFragment() {
                         return
                     }
 
-                    val localUri =
-                        Uri.parse(cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)))
-                    Log.d("PHH", "Got localURI = $localUri")
-                    val path = localUri.path!!
-                    val pi = context.packageManager.packageInstaller
-                    val sessionId =
-                        pi.createSession(PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL))
-                    val session = pi.openSession(sessionId)
+                    val localUri = Uri.parse(cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)))
+                    cursor.close()
+                    installDownloadedApk(context, localUri.path!!)
+                    context.unregisterReceiver(this)
+            }
+        }, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
 
-                    Tools.safeSetprop("persist.vendor.vilte_support", "0")
+    private fun installDownloadedApk(context: Context, path: String) {
+        val pi = context.packageManager.packageInstaller
+        val sessionId = pi.createSession(PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL))
+        val session = pi.openSession(sessionId)
 
-                    Toast.makeText(context, "Installing IMS APK", Toast.LENGTH_SHORT).show()
+        Tools.safeSetprop("persist.vendor.vilte_support", "0")
+        Toast.makeText(context, "Installing IMS APK", Toast.LENGTH_SHORT).show()
 
-                    session.openWrite("hello", 0, -1).use { output ->
-                        FileInputStream(path).use { input ->
-                            val buf = ByteArray(512 * 1024)
-                            while (input.available() > 0) {
-                                val l = input.read(buf)
-                                output.write(buf, 0, l)
-                            }
-                            session.fsync(output)
-                        }
-                    }
-
-                    activity?.registerReceiver(
-                        object : BroadcastReceiver() {
-                            override fun onReceive(p0: Context?, intet: Intent?) {
-                                Log.e("PHH", "Apk install received $intent")
-                                Toast.makeText(
-                                    p0,
-                                    "IMS apk installed! You may now reboot.",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        },
-                        IntentFilter("me.phh.treble.app.ImsInstalled"), Context.RECEIVER_EXPORTED
-                    )
-
-                    session.commit(
-                        PendingIntent.getBroadcast(
-                            this@ImsSettingsFragment.activity,
-                            1,
-                            Intent("me.phh.treble.app.ImsInstalled"),
-                            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-                        ).intentSender
-                    )
-                    activity?.unregisterReceiver(this)
+        session.openWrite("hello", 0, -1).use { output ->
+            FileInputStream(path).use { input ->
+                val buf = ByteArray(512 * 1024)
+                while (input.available() > 0) {
+                    val l = input.read(buf)
+                    output.write(buf, 0, l)
                 }
-            }, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), android.content.Context.RECEIVER_EXPORTED)
-
-            updateImsPackageSummary()
-            return@setOnPreferenceClickListener true
+                session.fsync(output)
+            }
         }
+
+        context.registerReceiver(
+            object : BroadcastReceiver() {
+                override fun onReceive(context: Context?, intent: Intent?) {
+                    Toast.makeText(
+                        context,
+                        "IMS apk installed! You may now reboot.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            },
+            IntentFilter("me.phh.treble.app.ImsInstalled")
+        )
+
+        session.commit(
+            PendingIntent.getBroadcast(
+                context,
+                1,
+                Intent("me.phh.treble.app.ImsInstalled"),
+                                       PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+            ).intentSender
+        )
     }
 }

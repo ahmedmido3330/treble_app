@@ -15,31 +15,46 @@
             android:summary="Removes in-built root" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="GENERAL">
+    <PreferenceCategory
+        android:title="GENERAL"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_biometricstrong"
             android:title="Set BIOMETRIC_STRONG security level"
             android:summaryOn="Required by some old broken devices" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="0"
             android:key="key_misc_launcher3"
             android:title="Set Launcher3 as recents provider"
             android:summary="Requires a reboot" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_treat_virtual_sensors_as_real"
+            android:title="Treat virtual sensors as real"
+            android:summary="Treat all virtual fingerprint sensors as real\nWarning: This can cause bootloops - use with extreme care\nRequires a reboot" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_disable_sae_upgrade"
             android:title="Disable WPA3/SAE"
             android:summary="For unsupported devices" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_storage_fuse"
             android:title="Disable FUSE storage layer"
             android:summary="This can (de/in)crease storage speed\nRequires a reboot" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="DISPLAY">
+    <PreferenceCategory
+        android:title="DISPLAY"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_unihertz_dt2w"
             android:title="Enable Agold/Unihertz DT2W" />

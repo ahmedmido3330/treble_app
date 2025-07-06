@@ -10,6 +10,7 @@ import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
+import android.view.View
 
 class SettingsActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +21,8 @@ class SettingsActivity : Activity() {
 
         if (savedInstanceState == null) {
             fragmentManager.beginTransaction()
-                .replace(android.R.id.content, SettingsFragment())
-                .commit()
+            .replace(android.R.id.content, SettingsFragment())
+            .commit()
         }
 
         actionBar?.setDisplayHomeAsUpEnabled(true)
@@ -90,12 +91,20 @@ class SettingsActivity : Activity() {
                     fragment.arguments = it.extras
 
                     fragmentManager.beginTransaction()
-                        .replace(android.R.id.content, fragment)
-                        .addToBackStack(null)
-                        .commit()
+                    .replace(android.R.id.content, fragment)
+                    .addToBackStack(null)
+                    .commit()
                     true
                 }
             }
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            listView.divider = null
+            listView.dividerHeight = 0
+            listView.clipToPadding = true
+            listView.setPadding(32, listView.paddingTop, 32, listView.paddingBottom) // Adiciona 16dp de padding lateral
         }
 
         override fun onResume() {

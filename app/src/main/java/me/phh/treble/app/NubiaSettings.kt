@@ -1,9 +1,13 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object NubiaSettings : Settings {
     val dt2w = "nubia_double_tap_to_wake"
@@ -36,10 +40,29 @@ class NubiaSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_nubia)
 
-        if (OnePlusSettings.enabled(context)) {
+        if (NubiaSettings.enabled(context)) {
             Log.d("PHH", "Loading Nubia fragment ${NubiaSettings.enabled(context)}")
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(NubiaSettings.fanSpeed)!!)
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(NubiaSettings.redmagicLed)!!)
+
+            findPreference(NubiaSettings.fanSpeed)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(NubiaSettings.redmagicLed)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply same visual settings as AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 }

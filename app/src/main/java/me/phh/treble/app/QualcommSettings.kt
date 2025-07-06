@@ -1,10 +1,14 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
-import android.preference.PreferenceFragment
 import android.os.SystemProperties
+import android.preference.Preference
+import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object QualcommSettings : Settings {
     val alternateMediaprofile = "key_qualcomm_alternate_mediaprofile"
@@ -27,6 +31,19 @@ class QualcommSettingsFragment : PreferenceFragment() {
 
         if (QualcommSettings.enabled(context)) {
             Log.d("PHH", "Loading Qualcomm fragment ${QualcommSettings.enabled(context)}")
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply same visual settings as AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 }

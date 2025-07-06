@@ -2,25 +2,34 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="REQUIREMENTS">
+    <PreferenceCategory
+        android:title="REQUIREMENTS"
+        android:layout="@layout/preference_category_custom">
         <Preference
+            android:layout="@layout/preference_custom"
             android:title="Create IMS APN"
             android:key="key_ims_create_apn" />
         <Preference
+            android:layout="@layout/preference_custom"
             android:title="Download and install IMS APK"
             android:key="key_ims_install_apn" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_request_network"
             android:title="Request IMS network" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_force_enable_setting"
             android:title="Force the presence of 4G Calling setting" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="WORKAROUND ISSUES">
+    <PreferenceCategory
+        android:title="WORKAROUND ISSUES"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_allow_binder_thread_on_incoming_calls"
             android:title="Allow binder thread on incoming calls"

@@ -1,12 +1,15 @@
 package me.phh.treble.app
 
 import android.app.AlertDialog
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.SystemProperties
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 import android.widget.Toast
 
 object TelephonySettings : Settings {
@@ -17,10 +20,11 @@ object TelephonySettings : Settings {
     val simCount = "key_telephony_simcount"
     val resetSimCount = "key_telephony_reset_simcount"
     val smsc = "key_telephony_smsc"
+    var patchSmsc = "key_misc_patch_smsc"
     val restrictednetworking = "key_telephony_restricted_networking"
 
     override fun enabled(context: Context): Boolean {
-        Log.d("PHH", "Initializing Audio settings")
+        Log.d("PHH", "Initializing Telephony settings")
         return true
     }
 }
@@ -30,64 +34,87 @@ class TelephonySettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_telephony)
 
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(TelephonySettings.mobileSignal)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(TelephonySettings.simCount)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(TelephonySettings.smsc)!!)
+        if (TelephonySettings.enabled(context)) {
+            Log.d("PHH", "Loading Telephony fragment ${TelephonySettings.enabled(context)}")
 
-        val removeTelephonyHandler: Preference? = findPreference(TelephonySettings.removeTelephony)
-        removeTelephonyHandler?.setOnPreferenceClickListener {
-            removeTelephonyDialog()
-            true
+            findPreference(TelephonySettings.mobileSignal)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(TelephonySettings.simCount)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(TelephonySettings.smsc)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(TelephonySettings.removeTelephony)?.setOnPreferenceClickListener {
+                removeTelephonyDialog()
+                true
+            }
+
+            findPreference(TelephonySettings.resetSimCount)?.setOnPreferenceClickListener {
+                resetSimCountDialog()
+                true
+            }
         }
+    }
 
-        val resetSimCountHandler: Preference? = findPreference(TelephonySettings.resetSimCount)
-        resetSimCountHandler?.setOnPreferenceClickListener {
-            resetSimCountDialog()
-            true
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply consistent visual settings
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 
     private fun removeTelephonyDialog() {
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(activity)
         builder.setTitle("Removing Telephony")
-            .setMessage("Are you sure? This will delete it forever")
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
-                try {
-                    val process = Runtime.getRuntime().exec("su")
-                    val outputStream = process.outputStream
-                    val writer = outputStream.bufferedWriter()
+        .setMessage("Are you sure? This will delete it forever")
+        .setPositiveButton(android.R.string.yes) { dialog, which ->
+            try {
+                val process = Runtime.getRuntime().exec("su")
+                val outputStream = process.outputStream
+                val writer = outputStream.bufferedWriter()
 
-                    writer.write("/system/bin/remove-telephony.sh\n")
-                    writer.write("exit\n")
-                    writer.flush()
-                    writer.close()
+                writer.write("/system/bin/remove-telephony.sh\n")
+                writer.write("exit\n")
+                writer.flush()
+                writer.close()
 
-                    val exitCode = process.waitFor()
+                val exitCode = process.waitFor()
 
-                    if (exitCode == 0) {
-                        Log.d("PHH", "Successfully executed remove-telephony.sh via su shell!")
-                        Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
-                    } else {
-                        Log.e("PHH", "Failed with exit code: $exitCode")
-                    }
-                } catch (e: Exception) {
-                    Log.d("PHH", "Failed to exec su shell directly: ${e.message}")
+                if (exitCode == 0) {
+                    Log.d("PHH", "Successfully executed remove-telephony.sh via su shell!")
+                    Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
+                } else {
+                    Log.e("PHH", "Failed with exit code: $exitCode")
                 }
+            } catch (e: Exception) {
+                Log.d("PHH", "Failed to exec su shell directly: ${e.message}")
             }
-            .setNegativeButton(android.R.string.no, null)
+        }
+        .setNegativeButton(android.R.string.no, null)
 
         builder.show()
     }
 
     private fun resetSimCountDialog() {
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(activity)
         builder.setTitle(getString(R.string.reset_simcount))
-            .setMessage(getString(R.string.reset_simcount_summary))
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
-                SystemProperties.set("persist.sys.phh.sim_count", "reset")
-                Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
-            }
-            .setNegativeButton(android.R.string.no, null)
+        .setMessage(getString(R.string.reset_simcount_summary))
+        .setPositiveButton(android.R.string.yes) { dialog, which ->
+            SystemProperties.set("persist.sys.phh.sim_count", "reset")
+            Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
+        }
+        .setNegativeButton(android.R.string.no, null)
 
         builder.show()
     }

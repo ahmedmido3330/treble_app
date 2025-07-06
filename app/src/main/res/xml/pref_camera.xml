@@ -2,22 +2,30 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="key_camera_multi_camera"
-        android:title="Expose Aux cameras" />
+    <PreferenceCategory
+        android:title="GENERAL"
+        android:layout="@layout/preference_category_custom">
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_camera_multi_camera"
+            android:title="Expose Aux cameras" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="key_camera_force_camera2api_hal3"
-        android:title="Force Enable Camera2API HAL3" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_camera_force_camera2api_hal3"
+            android:title="Force Enable Camera2API HAL3" />
 
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_camera_timestamp"
-        android:entryValues="@array/pref_camera_timestamp_values"
-        android:key="key_camera_camera_timestamp"
-        android:title="Force Timestamp Source"
-        android:summary="Requires a reboot" />
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue="-1"
+            android:entries="@array/pref_camera_timestamp"
+            android:entryValues="@array/pref_camera_timestamp_values"
+            android:key="key_camera_camera_timestamp"
+            android:title="Force Timestamp Source"
+            android:summary="Requires a reboot" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

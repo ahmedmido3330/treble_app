@@ -1,9 +1,13 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object OnePlusSettings : Settings {
     val displayModeKey = "key_oneplus_display_mode"
@@ -25,8 +29,27 @@ class OnePlusSettingsFragment : PreferenceFragment() {
 
         if (OnePlusSettings.enabled(context)) {
             Log.d("PHH", "Loading OnePlus fragment ${OnePlusSettings.enabled(context)}")
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(OnePlusSettings.displayModeKey)!!)
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(OnePlusSettings.highBrightnessModeKey)!!)
+
+            findPreference(OnePlusSettings.displayModeKey)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(OnePlusSettings.highBrightnessModeKey)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply same visual settings as AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 }

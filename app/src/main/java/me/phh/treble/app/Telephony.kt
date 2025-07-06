@@ -32,6 +32,10 @@ object Telephony: EntryStartup {
                 SystemProperties.set("persist.sys.phh.smsc", value)
                 Log.d("PHH", "Setting SMSC to $value")
             }
+            TelephonySettings.patchSmsc -> {
+                val value = sp.getBoolean(key, true)
+                SystemProperties.set("persist.sys.phh.patch_smsc", if (value) "true" else "false")
+            }
             TelephonySettings.restrictednetworking -> {
                 val value = sp.getBoolean(key, false)
                 SystemProperties.set("persist.sys.phh.restricted_networking", if(value) "1" else "0")

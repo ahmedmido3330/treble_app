@@ -33,6 +33,11 @@ dependencies {
     compileOnly fileTree(dir: 'libs', include: '*.jar')
     implementation files('libs/vendor.hct.hardware.gesturewake-V1.0-java.jar')
     implementation files('libs/vendor.ims.zenmotion-V1.0-java.jar')
+    implementation "com.google.android.material:material:1.9.0"
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+
 
     //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

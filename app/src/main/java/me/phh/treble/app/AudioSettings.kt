@@ -1,9 +1,13 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object AudioSettings : Settings {
     val headsetDevinput = "key_audio_headset_devinput"
@@ -21,7 +25,6 @@ object AudioSettings : Settings {
     val unsupportedStates = "key_bt_unsupported_states"
     val leVersionCap = "key_bt_le_version_cap"
     val disableLeApcfExtended = "key_bt_disable_le_apcfe"
-
 
     val stateMap = mapOf(
         "key_bt_unsupported_commands" to "persist.sys.bt.unsupported.commands",
@@ -42,15 +45,36 @@ class AudioSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_audio)
 
+        // Aplica o mesmo estilo visual do AudioEffectsFragment
         Tools.updatePreferenceState(this, AudioSettings.stateMap)
 
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.workarounds)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.escoTransportUnitSize)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.maxBTAudioDevices)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.unsupportedCommands)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.unsupportedOgFeatures)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.unsupportedLeFeatures)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.unsupportedStates)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(AudioSettings.leVersionCap)!!)
+        // Configura os sumários das preferências
+        listOf(
+            AudioSettings.workarounds,
+            AudioSettings.escoTransportUnitSize,
+            AudioSettings.maxBTAudioDevices,
+            AudioSettings.unsupportedCommands,
+            AudioSettings.unsupportedOgFeatures,
+            AudioSettings.unsupportedLeFeatures,
+            AudioSettings.unsupportedStates,
+            AudioSettings.leVersionCap
+        ).forEach { key ->
+            findPreference(key)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Aplica as mesmas configurações visuais do AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
+        }
     }
 }

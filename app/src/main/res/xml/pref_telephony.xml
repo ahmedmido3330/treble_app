@@ -2,51 +2,70 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditTextPreference
-        android:key="key_telephony_smsc"
-        android:title="Set SMSC value"
-        android:inputType="text"
-        android:summary="Default" />
+        <PreferenceCategory
+            android:title="GENERAL"
+            android:layout="@layout/preference_category_custom">
+                <EditTextPreference
+                    android:layout="@layout/preference_edittext_custom"
+                    android:key="key_telephony_smsc"
+                    android:title="Set SMSC value"
+                    android:inputType="text"
+                    android:summary="Default" />
 
-    <ListPreference
-        android:defaultValue="default"
-        android:entries="@array/pref_telephony_simcount"
-        android:entryValues="@array/pref_telephony_simcount_values"
-        android:key="key_telephony_simcount"
-        android:title="SIM Count" />
+                <ListPreference
+                    android:layout="@layout/preference_list_custom"
+                    android:defaultValue="default"
+                    android:entries="@array/pref_telephony_simcount"
+                    android:entryValues="@array/pref_telephony_simcount_values"
+                    android:key="key_telephony_simcount"
+                    android:title="SIM Count" />
 
-    <Preference
-        android:title="Reset SIM Count"
-        android:key="key_telephony_reset_simcount"
-        android:summary="Reset SIM count to default values \nRequires a Reboot" />
+                <Preference
+                    android:layout="@layout/preference_custom"
+                    android:title="Reset SIM Count"
+                    android:key="key_telephony_reset_simcount"
+                    android:summary="Reset SIM count to default values \nRequires a Reboot" />
 
-    <ListPreference
-        android:defaultValue="default"
-        android:entries="@array/pref_telephony_mobile_signal"
-        android:entryValues="@array/pref_telephony_mobile_signal_values"
-        android:key="key_telephony_mobile_signal"
-        android:title="Signal meter method" />
+                <ListPreference
+                    android:layout="@layout/preference_list_custom"
+                    android:defaultValue="default"
+                    android:entries="@array/pref_telephony_mobile_signal"
+                    android:entryValues="@array/pref_telephony_mobile_signal_values"
+                    android:key="key_telephony_mobile_signal"
+                    android:title="Signal meter method" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="key_telephony_restart_ril"
-        android:title="Automatically restart RIL" />
+                <SwitchPreference
+                    android:layout="@layout/preference_switch_custom"
+                    android:defaultValue="false"
+                    android:key="key_telephony_restart_ril"
+                    android:title="Automatically restart RIL" />
 
-    <Preference
-        android:title="Remove Telephony Subsystem"
-        android:key="key_telephony_removetelephony"
-        android:summary="For devices without simcard" />
+                <SwitchPreference
+                    android:layout="@layout/preference_switch_custom"
+                    android:defaultValue="true"
+                    android:key="key_misc_patch_smsc"
+                    android:title="Patch SMSC"
+                    android:summary="If you can't send messages, primarily on Samsung devices, turn off SMSC patching" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="key_telephony_force_display_5g"
-        android:title="Force display 5G network"
-        android:summary="Displays 5G as an option for the preferred network type\nRequires a reboot" />
+                <Preference
+                    android:layout="@layout/preference_custom"
+                    android:title="Remove Telephony Subsystem"
+                    android:key="key_telephony_removetelephony"
+                    android:summary="For devices without simcard" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="key_telephony_restricted_networking"
-        android:title="Restricted networking mode"
-        android:summary="Requires be disabled for some devices" />
+                <SwitchPreference
+                    android:layout="@layout/preference_switch_custom"
+                    android:defaultValue="false"
+                    android:key="key_telephony_force_display_5g"
+                    android:title="Force display 5G network"
+                    android:summary="Displays 5G as an option for the preferred network type\nRequires a reboot" />
+
+                <SwitchPreference
+                    android:layout="@layout/preference_switch_custom"
+                    android:defaultValue="false"
+                    android:key="key_telephony_restricted_networking"
+                    android:title="Restricted networking mode"
+                    android:summary="Requires be disabled for some devices" />
+        </PreferenceCategory>
 
 </PreferenceScreen>

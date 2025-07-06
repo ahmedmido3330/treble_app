@@ -1,9 +1,13 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object SamsungSettings : Settings {
     val highBrightess = "key_samsung_high_brightness"
@@ -22,7 +26,7 @@ object SamsungSettings : Settings {
 
     override fun enabled(context: Context): Boolean {
         val isSamsung = Tools.vendorFpLow.startsWith("samsung/") ||
-                Tools.vendorFpLow.startsWith("kddi/scv41_")
+        Tools.vendorFpLow.startsWith("kddi/scv41_")
         Log.d("PHH", "SamsungSettings enabled() called, isSamsung = $isSamsung")
         return isSamsung
     }
@@ -35,8 +39,27 @@ class SamsungSettingsFragment : PreferenceFragment() {
 
         if (SamsungSettings.enabled(context)) {
             Log.d("PHH", "Loading Samsung fragment ${SamsungSettings.enabled(context)}")
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SamsungSettings.flashStrength)!!)
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SamsungSettings.backlightMultiplier)!!)
+
+            findPreference(SamsungSettings.flashStrength)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+
+            findPreference(SamsungSettings.backlightMultiplier)?.let {
+                SettingsActivity.bindPreferenceSummaryToValue(it)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply consistent visual settings
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 }

@@ -1,11 +1,14 @@
 package me.phh.treble.app
 
 import android.app.AlertDialog
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 import android.widget.Toast
 
 object UiSettings : Settings {
@@ -21,7 +24,7 @@ object UiSettings : Settings {
     val stateMap = mapOf(
         "key_ui_sb_padding_top" to "persist.sys.phh.status_bar_padding_top",
         "key_ui_sb_padding_start" to "persist.sys.phh.status_bar_padding_start",
-        "key_ui_sb_padding_end" to "persist.sys.phh.status_bar_padding_end",
+        "key_ui_sb_padding_end" to "persist.sys.phh.status_bar_padding_end"
     )
 
     override fun enabled(context: Context): Boolean {
@@ -35,52 +38,66 @@ class UiSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_ui)
 
-        Tools.updatePreferenceState(this, UiSettings.stateMap)
+        if (UiSettings.enabled(context)) {
+            Log.d("PHH", "Loading UI fragment ${UiSettings.enabled(context)}")
 
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(UiSettings.fodColor)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(UiSettings.pointerType)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(UiSettings.statusbarpaddingtop)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(UiSettings.statusbarpaddingstart)!!)
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(UiSettings.statusbarpaddingend)!!)
+            Tools.updatePreferenceState(this, UiSettings.stateMap)
 
-        val restartUIHandler: Preference? = findPreference(UiSettings.restartSystemUI)
-        restartUIHandler?.setOnPreferenceClickListener {
-            restartUIDialog()
-            true
+            listOf(
+                UiSettings.fodColor,
+                UiSettings.pointerType,
+                UiSettings.statusbarpaddingtop,
+                UiSettings.statusbarpaddingstart,
+                UiSettings.statusbarpaddingend
+            ).forEach { prefKey ->
+                findPreference(prefKey)?.let {
+                    SettingsActivity.bindPreferenceSummaryToValue(it)
+                }
+            }
+
+            findPreference(UiSettings.restartSystemUI)?.setOnPreferenceClickListener {
+                restartUIDialog()
+                true
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply consistent visual settings
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 
     private fun restartUIDialog(): Boolean {
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(activity)
         builder.setTitle("Restarting System UI")
-            .setMessage("Are you sure?")
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
-                try {
-                    val process = Runtime.getRuntime().exec("su")
-                    val outputStream = process.outputStream
-                    val writer = outputStream.bufferedWriter()
-
-                    writer.write("/system/bin/killall com.android.systemui\n")
-                    writer.write("exit\n")
-                    writer.flush()
-                    writer.close()
-
-                    val exitCode = process.waitFor()
-
+        .setMessage("Are you sure?")
+        .setPositiveButton(android.R.string.yes) { dialog, which ->
+            try {
+                Runtime.getRuntime().exec(arrayOf("su", "-c", "pkill -f com.android.systemui")).waitFor().let { exitCode ->
                     if (exitCode == 0) {
-                        Log.d("PHH", "Successfully executed killall via su shell!")
-                        Toast.makeText(activity, R.string.restart_system_ui, Toast.LENGTH_LONG).show()
+                        Log.d("PHH", "Successfully restarted SystemUI")
+                        Toast.makeText(activity, "SystemUI restarted", Toast.LENGTH_SHORT).show()
                     } else {
-                        Log.e("PHH", "Failed with exit code: $exitCode")
+                        Log.e("PHH", "Failed to restart SystemUI, exit code: $exitCode")
+                        Toast.makeText(activity, "Failed to restart SystemUI", Toast.LENGTH_SHORT).show()
                     }
-
-                } catch (e: Exception) {
-                    Log.d("PHH", "Failed to exec su shell directly: ${e.message}")
                 }
+            } catch (e: Exception) {
+                Log.e("PHH", "Error restarting SystemUI: ${e.message}")
+                Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton(android.R.string.no, null)
+        }
+        .setNegativeButton(android.R.string.no, null)
+        .show()
 
-        builder.show()
         return true
     }
 }

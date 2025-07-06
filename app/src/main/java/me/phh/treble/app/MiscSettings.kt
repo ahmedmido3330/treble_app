@@ -1,17 +1,21 @@
 package me.phh.treble.app
 
 import android.app.AlertDialog
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.SystemProperties
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 import android.widget.Toast
 import java.io.File
 
 object MiscSettings : Settings {
     val biometricstrong = "key_misc_biometricstrong"
+    val treatVirtualSensorsAsReal = "key_misc_treat_virtual_sensors_as_real"
     val launcher3 = "key_misc_launcher3"
     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
     val storageFUSE = "key_misc_storage_fuse"
@@ -38,55 +42,65 @@ class MiscSettingsFragment : PreferenceFragment() {
 
         Tools.updatePreferenceState(this, MiscSettings.stateMap)
 
-        // Check enabled status for each preference and remove if not enabled
-        val context = activity ?: return
-        val checkEnabled = EntryService.getEnabledPreferences(context)
-        checkEnabled.forEach { (key, isEnabled) ->
-            if (!isEnabled) {
-                val preference = findPreference(key)
-                preference?.let {
-                    val parent = preference.parent
-                    parent?.removePreference(preference)
+        // Check enabled status for each preference
+        activity?.let { context ->
+            EntryService.getEnabledPreferences(context).forEach { (key, isEnabled) ->
+                if (!isEnabled) {
+                    findPreference(key)?.let { pref ->
+                        pref.parent?.removePreference(pref)
+                    }
                 }
             }
         }
 
-        val securizeHandler: Preference? = findPreference(MiscSettings.securize)
-        securizeHandler?.setOnPreferenceClickListener {
-            securizeDialog()
+        // Setup securize handler
+        findPreference(MiscSettings.securize)?.setOnPreferenceClickListener {
+            showSecurizeDialog()
             true
+        }
+
+        Log.d("PHH", "Misc settings loaded successfully")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply same visual settings as AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
     }
 
-    private fun securizeDialog() {
-        val builder = AlertDialog.Builder(activity!!)
-        builder.setTitle("Removing Root")
-            .setMessage("Are you sure? This will remove in-built root access")
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
-                try {
-                    val process = Runtime.getRuntime().exec("su")
-                    val outputStream = process.outputStream
-                    val writer = outputStream.bufferedWriter()
+    private fun showSecurizeDialog() {
+        AlertDialog.Builder(activity).apply {
+            setTitle("Removing Root")
+            setMessage("Are you sure? This will remove in-built root access")
+            setPositiveButton(android.R.string.yes) { _, _ -> executeSecurize() }
+            setNegativeButton(android.R.string.no, null)
+        }.show()
+    }
 
-                    writer.write("/system/bin/phh-securize.sh\n")
-                    writer.write("exit\n")
-                    writer.flush()
-                    writer.close()
-
-                    val exitCode = process.waitFor()
-
-                    if (exitCode == 0) {
-                        Log.d("PHH", "Successfully executed phh-securize.sh via su shell!")
-                        Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
-                    } else {
-                        Log.e("PHH", "Failed with exit code: $exitCode")
-                    }
-                } catch (e: Exception) {
-                    Log.d("PHH", "Failed to exec su shell directly: ${e.message}")
-                }
+    private fun executeSecurize() {
+        try {
+            val process = Runtime.getRuntime().exec("su")
+            process.outputStream.bufferedWriter().use { writer ->
+                writer.write("/system/bin/phh-securize.sh\n")
+                writer.write("exit\n")
             }
-            .setNegativeButton(android.R.string.no, null)
 
-        builder.show()
+            val exitCode = process.waitFor()
+            if (exitCode == 0) {
+                Log.d("PHH", "Successfully executed phh-securize.sh")
+                Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
+            } else {
+                Log.e("PHH", "Failed with exit code: $exitCode")
+            }
+        } catch (e: Exception) {
+            Log.e("PHH", "Failed to exec su shell", e)
+        }
     }
 }

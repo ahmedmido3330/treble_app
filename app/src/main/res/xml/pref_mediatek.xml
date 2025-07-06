@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="GENERAL">
+    <PreferenceCategory
+        android:title="GENERAL"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:defaultValue="false"
+            android:layout="@layout/preference_switch_custom"
             android:key="key_mtk_mediatek_touch_hint_rotate"
             android:title="Rotation perf hint instead of touch"
-            android:summary="For Mediatek devices"/>
+            android:summary="For Mediatek devices" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:layout="@layout/preference_switch_custom"
             android:key="key_mtk_mediatek_ged_kpi"
             android:title="Mediatek GED KPI support"
-            android:summary="Might improve GPU performance for Mediatek devices"/>
+            android:summary="Might improve GPU performance for Mediatek devices" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="TELEPHONY">
+    <PreferenceCategory
+        android:title="TELEPHONY"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:defaultValue="false"
+            android:layout="@layout/preference_switch_custom"
             android:key="key_mtk_force_cognitive"
             android:title="Forward-port support for forceCognitive"
-            android:summary="Required on somes mtk devices"/>
+            android:summary="Required on some MTK devices" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="CAMERA">
+    <PreferenceCategory
+        android:title="CAMERA"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_qualcomm_alternate_mediaprofile"
             android:title="Use alternate camera profile"
             android:summary="Requires a reboot" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="AUDIO">
+    <PreferenceCategory
+        android:title="AUDIO"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_qualcomm_disable_soundvolume_effect"
             android:title="Disable soundvolume effect"
             android:summary="May fix audio distorsion" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_qualcomm_disable_stereo_voip"
             android:title="Disable stereo support on VoIP"
             android:summary="May fix high pitched audio. Requires a reboot" />
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_qualcomm_direct_output_voip"
             android:title="Define VoIP as Direct Output"
             android:summary="Should fix high pitched audio. Requires a reboot" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="MOBILE NETWORK">
+    <PreferenceCategory
+        android:title="MOBILE NETWORK"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_qualcomm_restart_qcrild"
             android:title="Restart qcrild on boot"

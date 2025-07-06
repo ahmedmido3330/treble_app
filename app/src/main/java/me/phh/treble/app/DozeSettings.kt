@@ -1,11 +1,16 @@
 package me.phh.treble.app
 
+import android.app.Fragment
 import android.content.Context
 import android.hardware.Sensor
 import android.os.Bundle
+import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
+import android.preference.SwitchPreference
 import android.util.Log
+import android.view.View
+import android.widget.ListView
 
 object DozeSettings : Settings {
     val handwaveKey = "key_doze_handwave"
@@ -29,36 +34,59 @@ class DozeSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_doze)
 
-        // Check enabled status for each preference and remove if not enabled
-        val context = activity ?: return
-        val checkEnabled = EntryService.getEnabledPreferences(context)
-        checkEnabled.forEach { (key, isEnabled) ->
-            if (!isEnabled) {
-                val preference = findPreference(key)
-                preference?.let {
-                    val parent = preference.parent
-                    parent?.removePreference(preference)
+        // Check enabled status for each preference
+        activity?.let { context ->
+            EntryService.getEnabledPreferences(context).forEach { (key, isEnabled) ->
+                if (!isEnabled) {
+                    findPreference(key)?.let { pref ->
+                        pref.parent?.removePreference(pref)
+                    }
                 }
             }
         }
 
-        // Checking for ChopChop Sensor
-        val chopchopPref = findPreference(DozeSettings.chopchopkey) as? android.preference.SwitchPreference
-        var chopchopSensor: Sensor? = null
-        try {
-            chopchopSensor = Doze.sensorManager.getSensorList(Sensor.TYPE_ALL)
-                .firstOrNull { it.stringType == "com.motorola.sensor.chopchop" }
-        } catch (e: Exception) {
-            // Disabling ChopChop Preference if sensor not found
-            chopchopPref?.apply {
-                isEnabled = false
-                isChecked = false
-            }
+        // Handle ChopChop sensor
+        handleChopChopPreference()
 
-            val sp = PreferenceManager.getDefaultSharedPreferences(activity)
-            val editor = sp.edit()
-            editor.putBoolean(DozeSettings.chopchopkey, false)
-            editor.apply()
+        Log.d("PHH", "Doze settings loaded successfully")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Apply same visual settings as AudioEffectsFragment
+        val listView = view.findViewById<ListView>(android.R.id.list)
+        listView?.apply {
+            divider = null
+            dividerHeight = 0
+            clipToPadding = true
+            setPadding(32, paddingTop, 32, paddingBottom)
         }
+    }
+
+    private fun handleChopChopPreference() {
+        (findPreference(DozeSettings.chopchopkey) as? SwitchPreference)?.let { pref ->
+            try {
+                val hasSensor = Doze.sensorManager.getSensorList(Sensor.TYPE_ALL)
+                .any { it.stringType == "com.motorola.sensor.chopchop" }
+
+                if (!hasSensor) {
+                    disableChopChopPreference(pref)
+                }
+            } catch (e: Exception) {
+                Log.e("PHH", "Error checking ChopChop sensor", e)
+                disableChopChopPreference(pref)
+            }
+        }
+    }
+
+    private fun disableChopChopPreference(pref: SwitchPreference) {
+        pref.apply {
+            isEnabled = false
+            isChecked = false
+        }
+        PreferenceManager.getDefaultSharedPreferences(activity).edit()
+        .putBoolean(DozeSettings.chopchopkey, false)
+        .apply()
     }
 }
