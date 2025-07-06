@@ -9,7 +9,7 @@
         android:title="GROUP"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:title="GSI Support Group"
             android:icon="@drawable/user"
             android:summary="Join">
@@ -28,72 +28,72 @@
         android:title="DEVICE SPECIFIC"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="asus_settings"
             android:title="Asus settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="mydevice_settings"
             android:title="My device"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="mediatek_settings"
             android:title="Mediatek settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="qualcomm_settings"
             android:title="Qualcomm settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="oneplus_settings"
             android:title="OnePlus settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="nubia_settings"
             android:title="Nubia settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="vsmart_settings"
             android:title="Vsmart settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="huawei_settings"
             android:title="Huawei settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="samsung_settings"
             android:title="Samsung settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="transsion_settings"
             android:title="Transsion settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="lenovo_settings"
             android:title="Lenovo settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="xiaomi_settings"
             android:title="Xiaomi settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="oppo_settings"
             android:title="Oppo settings"
             android:icon="@drawable/devices" />
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="doze_settings"
             android:title="Doze settings"
             android:icon="@drawable/doze" />
@@ -108,13 +108,13 @@
         android:title="DISPLAY"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="display_settings"
             android:title="Display settings"
             android:summary="Backlight, refresh rate and more"
             android:icon="@drawable/display"/>
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="ui_settings"
             android:title="User interface"
             android:summary="Layouts, paddings, icons and others"
@@ -130,14 +130,14 @@
         android:title="AUDIO"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="audio_settings"
             android:title="Audio settings"
             android:summary="Bluetooth and general fixes"
             android:icon="@drawable/audio" />
 
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="audiofx_settings"
             android:title="Audio effects"
             android:summary="Audio modifications pre-included by your vendor"
@@ -153,14 +153,14 @@
         android:title="TELEPHONY"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="telephony_settings"
             android:title="Telephony settings"
             android:summary="Telephony, signal, ril and 5G options"
             android:icon="@drawable/telephony" />
 
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="ims_settings"
             android:title="IMS settings"
             android:summary="VoLTE is here"
@@ -176,7 +176,7 @@
         android:title="CAMERA"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="camera_settings"
             android:title="Camera settings"
             android:summary="Useful camera things"
@@ -192,7 +192,7 @@
         android:title="MISCELLANEOUS"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="misc_settings"
             android:title="Misc settings"
             android:summary="Fingerprint fix and other stuff"
@@ -208,7 +208,7 @@
         android:title="DEBUGGING"
         android:layout="@layout/preference_category_custom">
         <Preference
-            android:layout="@layout/preference_custom"
+            android:layout="@layout/preference_custom_head"
             android:key="debug_settings"
             android:title="Debug settings"
             android:summary="Debug sensors"
@@ -219,14 +219,5 @@
         android:layout="@layout/preference_space"
         android:selectable="false"
         android:enabled="false" />
-
-    <Preference
-        android:layout="@layout/preference_custom"
-        android:iconSpaceReserved="true"
-        android:summary="This app has been developed by phhusson">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="https://github.com/phhusson/treble_app" />
-    </Preference>
 
 </PreferenceScreen>

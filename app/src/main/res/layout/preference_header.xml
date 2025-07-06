@@ -9,7 +9,7 @@
         android:id="@+id/header_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🛠TrebleDroid Settings🛠🕵"
+        android:text="🛠Treble Settings🛠🕵"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
