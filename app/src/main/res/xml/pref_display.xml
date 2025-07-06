@@ -53,7 +53,7 @@
         android:layout="@layout/preference_category_custom">
         <ListPreference
             android:layout="@layout/preference_list_custom"
-            android:defaultValue=""
+            android:defaultValue="SkiaGL"
             android:entries="@array/pref_display_sf_renderengine_backend"
             android:entryValues="@array/pref_display_sf_renderengine_backend_values"
             android:key="key_display_sf_renderengine_backend"
@@ -61,7 +61,7 @@
 
         <ListPreference
             android:layout="@layout/preference_list_custom"
-            android:defaultValue="kawase"
+            android:defaultValue="Disabled"
             android:entries="@array/pref_display_sf_blur_algorithm"
             android:entryValues="@array/pref_display_sf_blur_algorithm_values"
             android:key="key_display_sf_blur_algorithm"

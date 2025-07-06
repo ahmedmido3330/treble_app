@@ -12,7 +12,7 @@ import androidx.preference.PreferenceManager
 import java.lang.ref.WeakReference
 
 @SuppressLint("StaticFieldLeak")
-object Display: EntryStartup {
+object Display : EntryStartup {
     val surfaceFlinger = ServiceManager.getService("SurfaceFlinger")
     fun forceFps(v: Int, c: Boolean) {
         val data = Parcel.obtain()
@@ -24,8 +24,12 @@ object Display: EntryStartup {
             if (c) {
                 Log.d("PHH", "Resolution changed, attempting to restart SystemUI")
                 var cmds = listOf(
-                    arrayOf("su", "-c", "/system/bin/killall com.android.systemui"),
-                    arrayOf("phh-su", "-c", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/sbin/su", "-c", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/system/xbin/su", "-c", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/system/xbin/phh-su", "-c", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/sbin/su", "0", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/system/xbin/su", "0", "/system/bin/killall com.android.systemui"),
+                    arrayOf("/system/xbin/phh-su", "0", "/system/bin/killall com.android.systemui")
                 )
                 for (cmd in cmds) {
                     try {
@@ -58,56 +62,63 @@ object Display: EntryStartup {
     }
 
     lateinit var ctxt: WeakReference<Context>
+
     val spListener = SharedPreferences.OnSharedPreferenceChangeListener { sp, key ->
-        val c = ctxt.get()
-        if(c == null) return@OnSharedPreferenceChangeListener
+        val c = ctxt.get() ?: return@OnSharedPreferenceChangeListener
         val displayManager = c.getSystemService(DisplayManager::class.java)
-        when(key) {
+
+        when (key) {
+            // FPS com chave MiscSettings.displayFps
             DisplaySettings.displayFps -> {
-                val thisModeIndex = sp.getString(key, "-1")?.toInt()
+                val thisModeIndex = sp.getString(key, "-1")?.toIntOrNull() ?: -1
                 val displayInfo = displayManager.displays[0]
-                if (thisModeIndex != null) {
-                    if (thisModeIndex < 0 || thisModeIndex >= displayInfo.supportedModes.size) {
-                        Log.d("PHH", "Trying to set impossible supportedModes[$thisModeIndex]")
-                    } else {
-                        Log.d("PHH", "Trying to set supportedModes[$thisModeIndex]")
-                        val lastMode = displayInfo.getMode()
-                        var lastModeIndex = displayInfo.supportedModes.indexOf(lastMode)
-                        val thisMode = displayInfo.supportedModes[thisModeIndex]
-                        Log.d("PHH", "\tlastMode = supportedModes[$lastModeIndex] = $lastMode")
-                        Log.d("PHH", "\tthisMode = supportedModes[$thisModeIndex] = $thisMode")
-                        forceFps(thisModeIndex, (thisMode.getPhysicalWidth() != lastMode.getPhysicalWidth())
-                                || (thisMode.getPhysicalHeight() != lastMode.getPhysicalHeight()))
-                    }
+                if (thisModeIndex < 0 || thisModeIndex >= displayInfo.supportedModes.size) {
+                    Log.d("PHH", "Trying to set impossible supportedModes[$thisModeIndex]")
+                } else {
+                    Log.d("PHH", "Trying to set supportedModes[$thisModeIndex]")
+                    val lastMode = displayInfo.mode
+                    val lastModeIndex = displayInfo.supportedModes.indexOf(lastMode)
+                    val thisMode = displayInfo.supportedModes[thisModeIndex]
+                    Log.d("PHH", "\tlastMode = supportedModes[$lastModeIndex] = $lastMode")
+                    Log.d("PHH", "\tthisMode = supportedModes[$thisModeIndex] = $thisMode")
+                    forceFps(
+                        thisModeIndex,
+                        thisMode.physicalWidth != lastMode.physicalWidth || thisMode.physicalHeight != lastMode.physicalHeight
+                    )
                 }
             }
+
             DisplaySettings.dynamicFps -> {
                 val value = sp.getBoolean(key, false)
                 SystemProperties.set("persist.sys.phh.dynamic_fps", if (value) "true" else "false")
             }
+
             DisplaySettings.noHwcomposer -> {
                 val value = sp.getBoolean(key, false)
                 enableHwcOverlay(!value)
             }
+
             DisplaySettings.aod -> {
                 val value = sp.getBoolean(key, false)
                 SystemProperties.set("persist.sys.overlay.aod", if (value) "true" else "false")
                 OverlayPicker.setOverlayEnabled("me.phh.treble.overlay.misc.aod_systemui", true)
             }
+
             DisplaySettings.disableSfGlBackpressure -> {
                 val value = sp.getBoolean(key, false)
-                // Note: Reversed value because the prop is enabling
                 SystemProperties.set("persist.sys.phh.enable_sf_gl_backpressure", if (value) "0" else "1")
             }
+
             DisplaySettings.disableSfHwcBackpressure -> {
                 val value = sp.getBoolean(key, false)
-                // Note: Reversed value because the prop is enabling
                 SystemProperties.set("persist.sys.phh.enable_sf_hwc_backpressure", if (value) "0" else "1")
             }
+
             DisplaySettings.sfBlurAlgorithm -> {
                 val value = sp.getString(key, "kawase")
                 SystemProperties.set("persist.sys.phh.sf.background_blur", value)
             }
+
             DisplaySettings.sfRenderEngineBackend -> {
                 val value = sp.getString(key, "")
                 SystemProperties.set("debug.renderengine.backend", value)
@@ -123,7 +134,6 @@ object Display: EntryStartup {
 
         this.ctxt = WeakReference(ctxt.applicationContext)
 
-        // Refresh parameters on boot
         spListener.onSharedPreferenceChanged(sp, DisplaySettings.displayFps)
         spListener.onSharedPreferenceChanged(sp, DisplaySettings.noHwcomposer)
     }

@@ -15,29 +15,59 @@ object OverlayPicker: EntryStartup {
     private val platform = SystemProperties.get("ro.board.platform")
     private val vendorFp = SystemProperties.get("ro.vendor.build.fingerprint")
 
-    fun setOverlayEnabled(o: String, enabled: Boolean) {
-        if (om == null) {
-            Log.d("PHH", "OverlayManager is not initialized")
-            return
-        }
+    enum class ThemeOverlay {
+        AccentColor,
+        IconShape,
+        FontFamily,
+        IconPack
+    }
 
+    fun setOverlayEnabled(o: String, enabled: Boolean) {
         try {
-            om!!.setEnabled(o, enabled, 0)
+            om?.setEnabled(o, enabled, 0)
+            Log.d("PHH", "setOverlayEnabled: $o -> $enabled")
         } catch (e: RemoteException) {
-            Log.d("PHH", "Failed to set overlay", e)
+            Log.e("PHH", "Failed to set overlay $o to $enabled", e)
         }
     }
 
+    fun getThemeOverlays(to: ThemeOverlay): List<OverlayInfo> {
+        val filtered = when(to) {
+            ThemeOverlay.AccentColor ->
+                overlays.filter {
+                    it.targetPackageName == "android" &&
+                    it.packageName.startsWith("com.android.theme.color.")
+                }
+            ThemeOverlay.IconShape ->
+                overlays.filter {
+                    it.targetPackageName == "android" &&
+                    it.packageName.startsWith("com.android.theme.icon.")
+                }
+            ThemeOverlay.FontFamily ->
+                overlays.filter {
+                    it.targetPackageName == "android" &&
+                    it.packageName.startsWith("com.android.theme.font.")
+                }
+            ThemeOverlay.IconPack ->
+                overlays.filter {
+                    it.packageName.startsWith("com.android.theme.icon_pack.")
+                }
+        }
+        Log.d("PHH", "getThemeOverlays: tipo=$to retornou ${filtered.size} overlays")
+        filtered.forEach {
+            Log.d("PHH", "Overlay filtrado: package=${it.packageName}, target=${it.targetPackageName}")
+        }
+        return filtered
+    }
+
     private fun enableLte(ctxt: Context) {
-        //TODO: List here all non-LTE platforms
-        if ("mt6580" != platform)
+        if ("mt6580" != platform) {
             setOverlayEnabled("me.phh.treble.overlay.telephony.lte", true)
+        }
     }
 
     private fun handleNokia(ctxt: Context) {
         if(vendorFp == null) return
-
-        //Nokia 8.1/X7 [PNX]
         if(vendorFp.matches(Regex("Nokia/Phoenix.*"))) {
             setOverlayEnabled("me.phh.treble.overlay.nokia.pnx_8_1_x7.systemui", true)
         }
@@ -45,7 +75,6 @@ object OverlayPicker: EntryStartup {
 
     private fun handleSamsung(ctxt: Context) {
         if(vendorFp == null) return
-
         if(vendorFp.matches(Regex(".*(crown|star)[q2]*lte.*")) ||
             vendorFp.matches(Regex(".*(SC-0[23]K|SCV3[89]).*"))) {
             setOverlayEnabled("me.phh.treble.overlay.samsung.s9.systemui", true)
@@ -54,7 +83,6 @@ object OverlayPicker: EntryStartup {
 
     private fun handleXiaomi(ctxt: Context) {
         if(vendorFp == null) return
-
         if(vendorFp.matches(Regex(".*iaomi/perseus.*"))) {
             setOverlayEnabled("me.phh.treble.overlay.xiaomi.mimix3.systemui", true)
         }
@@ -63,27 +91,44 @@ object OverlayPicker: EntryStartup {
         }
     }
 
-    private fun getOverlays(ctxt: Context) {
+    private fun getOverlays() {
+        if (om == null) {
+            Log.w("PHH", "IOverlayManager não inicializado")
+            overlays = emptyList()
+            return
+        }
         try {
-            val values = mutableListOf<OverlayInfo>()
+            val all = om!!.getAllOverlays(0)
+            val list = mutableListOf<OverlayInfo>()
             @Suppress("UNCHECKED_CAST")
-            (om!!.getAllOverlays(0) as Map<String, List<OverlayInfo>>).forEach { values.addAll(it.value) }
-            overlays = values.toList()
+            (all as? Map<String, List<OverlayInfo>>)?.forEach { (_, overlayList) ->
+                list.addAll(overlayList)
+            }
+            overlays = list.toList()
+            Log.d("PHH", "getOverlays: carregados ${overlays.size} overlays no total")
+            overlays.forEach {
+                Log.d("PHH", "Overlay: package=${it.packageName}, target=${it.targetPackageName}, enabled=${it.isEnabled}")
+            }
         } catch (e: Exception) {
-            Log.d("PHH", "Failed to get overlays", e)
+            Log.e("PHH", "Erro ao obter overlays", e)
+            overlays = emptyList()
         }
     }
 
     override fun startup(ctxt: Context) {
         om = IOverlayManager.Stub.asInterface(
-            ServiceManager.getService("overlay"))
+                ServiceManager.getService("overlay"))
+
+        Log.d("PHH", "OverlayPicker startup iniciada")
 
         enableLte(ctxt)
         handleNokia(ctxt)
         handleSamsung(ctxt)
         handleXiaomi(ctxt)
-        getOverlays(ctxt)
+        getOverlays()
 
         setOverlayEnabled("me.phh.treble.overlay.systemui.falselocks", true)
+
+        Log.d("PHH", "OverlayPicker startup finalizada")
     }
 }
