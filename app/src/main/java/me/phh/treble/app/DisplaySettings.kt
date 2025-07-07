@@ -31,37 +31,28 @@ class DisplaySettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_display)
 
-        // Bind preference summaries
-        listOf(
-            DisplaySettings.displayFps,
-            DisplaySettings.sfBlurAlgorithm,
-            DisplaySettings.sfRenderEngineBackend
-        ).forEach { prefKey ->
-            findPreference(prefKey)?.let {
-                SettingsActivity.bindPreferenceSummaryToValue(it)
-            }
-        }
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.displayFps)!!)
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfBlurAlgorithm)!!)
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfRenderEngineBackend)!!)
 
-        // FPS preference setup
-        (findPreference(DisplaySettings.displayFps) as? ListPreference)?.let { fpsPref ->
-            val displayManager = activity?.getSystemService(DisplayManager::class.java)
-            displayManager?.displays?.get(0)?.let { display ->
-                val fpsEntries = listOf("Don't force") + display.supportedModes.map {
-                    "${it.physicalWidth}x${it.physicalHeight}@${it.refreshRate}"
-                }
-                val fpsValues = (-1..display.supportedModes.size).toList().map { it.toString() }
-                fpsPref.entries = fpsEntries.toTypedArray()
-                fpsPref.entryValues = fpsValues.toTypedArray()
+        val fpsPref = findPreference(DisplaySettings.displayFps) as ListPreference
+        val displayManager = activity?.getSystemService(DisplayManager::class.java)
+        displayManager?.displays?.get(0)?.let { display ->
+            val fpsEntries = listOf("Don't force") + display.supportedModes.map {
+                val fps = it.refreshRate
+                val w = it.physicalWidth
+                val h = it.physicalHeight
+                "${w}x${h}@${fps}"
             }
+            val fpsValues = (-1..display.supportedModes.size).toList().map { it.toString() }
+            fpsPref.entries = fpsEntries.toTypedArray()
+            fpsPref.entryValues = fpsValues.toTypedArray()
         }
-
-        Log.d("PHH", "Display settings loaded successfully")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Apply same visual settings as AudioEffectsFragment
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null

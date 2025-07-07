@@ -14,13 +14,6 @@
     <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- Permissões adicionais importantes para manipular overlays -->
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
-
     <application
         android:name=".TrebleApp"
         android:theme="@style/Theme.TrebleApp"
