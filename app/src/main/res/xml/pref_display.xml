@@ -49,26 +49,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="RENDER ENGINE"
-        android:layout="@layout/preference_category_custom">
-        <ListPreference
-            android:layout="@layout/preference_list_custom"
-            android:defaultValue="SkiaGL"
-            android:entries="@array/pref_display_sf_renderengine_backend"
-            android:entryValues="@array/pref_display_sf_renderengine_backend_values"
-            android:key="key_display_sf_renderengine_backend"
-            android:title="Render engine backend" />
-
-        <ListPreference
-            android:layout="@layout/preference_list_custom"
-            android:defaultValue="Disabled"
-            android:entries="@array/pref_display_sf_blur_algorithm"
-            android:entryValues="@array/pref_display_sf_blur_algorithm_values"
-            android:key="key_display_sf_blur_algorithm"
-            android:title="Blur algorithm" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="\nBACKLIGHT"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference

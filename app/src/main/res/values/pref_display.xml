@@ -31,31 +31,4 @@
       <item>"pen"</item>
       <item>"transparent"</item>
     </array>
-
-    <array name="pref_display_sf_blur_algorithm">
-        <item>Disabled</item>
-        <item>Gaussian</item>
-        <item>Kawase (Default)</item>
-    </array>
-    <array name="pref_display_sf_blur_algorithm_values">
-        <item>"disabled"</item>
-        <item>"gaussian"</item>
-        <item>"kawase"</item>
-    </array>
-
-    <array name="pref_display_sf_renderengine_backend">
-        <item>"Don't override"</item>
-        <item>SkiaGL</item>
-        <item>SkiaGL (threaded)</item>
-        <item>SkiaVK</item>
-        <item>SkiaVK (threaded)</item>
-    </array>
-    <array name="pref_display_sf_renderengine_backend_values">
-        <item>""</item>
-        <item>"skiagl"</item>
-        <item>"skiaglthreaded"</item>
-        <item>"skiavk"</item>
-        <item>"skiavkthreaded"</item>
-    </array>
-
 </resources>

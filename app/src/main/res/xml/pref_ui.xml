@@ -71,6 +71,39 @@
             android:summary="Requires SystemUI restart" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="STYLES"
+        android:layout="@layout/preference_category_custom">
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue=""
+            android:entries="@array/pref_custom_accent_color"
+            android:entryValues="@array/pref_custom_accent_color_values"
+            android:key="key_custom_accent_color"
+            android:title="Accent color" />
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue=""
+            android:entries="@array/pref_custom_icon_shape"
+            android:entryValues="@array/pref_custom_icon_shape_values"
+            android:key="key_custom_icon_shape"
+            android:title="Icon shape" />
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue=""
+            android:entries="@array/pref_custom_icon_pack"
+            android:entryValues="@array/pref_custom_icon_pack_values"
+            android:key="key_custom_icon_pack"
+            android:title="Icon pack" />
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue=""
+            android:entries="@array/pref_custom_font_family"
+            android:entryValues="@array/pref_custom_font_family_values"
+            android:key="key_custom_font_family"
+            android:title="Font family" />
+        </PreferenceCategory>
+
     <!-- TOOLS -->
     <PreferenceCategory
         android:title="TOOLS"

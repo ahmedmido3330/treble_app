@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 
 object UiSettings : Settings {
     val twoPaneLayout = "key_ui_two_pane_layout"
@@ -23,6 +24,11 @@ object UiSettings : Settings {
     val qsclockleftpadding = "key_misc_qs_clock_left_padding"
     val qsclockrightpadding = "key_misc_qs_clock_right_padding"
     val restartSystemUI = "key_ui_restart_systemui"
+
+    val accentColor = "key_custom_accent_color"
+    val iconShape = "key_custom_icon_shape"
+    val fontFamily = "key_custom_font_family"
+    val iconPack = "key_custom_icon_pack"
 
     val stateMap = mapOf(
         statusbarpaddingtop to "persist.sys.phh.status_bar_padding_top",
@@ -37,6 +43,8 @@ object UiSettings : Settings {
 }
 
 class UiSettingsFragment : PreferenceFragment() {
+    private var packages = listOf<PackageInfo>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_ui)
@@ -52,6 +60,10 @@ class UiSettingsFragment : PreferenceFragment() {
                 UiSettings.statusbarpaddingend,
                 UiSettings.qsclockleftpadding,
                 UiSettings.qsclockrightpadding,
+                UiSettings.accentColor,
+                UiSettings.iconShape,
+                UiSettings.fontFamily,
+                UiSettings.iconPack
             ).forEach { prefKey ->
                 findPreference(prefKey)?.let {
                     SettingsActivity.bindPreferenceSummaryToValue(it)
@@ -62,27 +74,34 @@ class UiSettingsFragment : PreferenceFragment() {
                 restartUIDialog()
                 true
             }
+
+            packages = activity.packageManager.getInstalledPackages(0)
+
+            setupOverlayListPreference(UiSettings.accentColor, OverlayPicker.ThemeOverlay.AccentColor)
+            setupOverlayListPreference(UiSettings.iconShape, OverlayPicker.ThemeOverlay.IconShape)
+            setupOverlayListPreference(UiSettings.fontFamily, OverlayPicker.ThemeOverlay.FontFamily)
+            setupIconPackPreference(UiSettings.iconPack)
         }
     }
 
     private fun restartUIDialog(): Boolean {
         AlertDialog.Builder(activity)
-        .setTitle("Restarting System UI")
-        .setMessage("Are you sure?")
-        .setPositiveButton(android.R.string.yes) { _, _ ->
-            try {
-                val exitCode = Runtime.getRuntime().exec(arrayOf("su", "-c", "pkill -f com.android.systemui")).waitFor()
-                if (exitCode == 0) {
-                    Toast.makeText(activity, "SystemUI restarted", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(activity, "Failed to restart SystemUI", Toast.LENGTH_SHORT).show()
+            .setTitle("Restarting System UI")
+            .setMessage("Are you sure?")
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                try {
+                    val exitCode = Runtime.getRuntime().exec(arrayOf("su", "-c", "pkill -f com.android.systemui")).waitFor()
+                    if (exitCode == 0) {
+                        Toast.makeText(activity, "SystemUI restarted", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity, "Failed to restart SystemUI", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-            } catch (e: Exception) {
-                Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-        }
-        .setNegativeButton(android.R.string.no, null)
-        .show()
+            .setNegativeButton(android.R.string.no, null)
+            .show()
         return true
     }
 
@@ -96,5 +115,43 @@ class UiSettingsFragment : PreferenceFragment() {
             clipToPadding = true
             setPadding(32, paddingTop, 32, paddingBottom)
         }
+    }
+
+    private fun setupOverlayListPreference(key: String, overlayType: OverlayPicker.ThemeOverlay) {
+        val pref = findPreference(key) as? ListPreference ?: return
+        val overlays = OverlayPicker.getThemeOverlays(overlayType)
+        val entries = listOf("Default") + overlays.map { getTargetName(it.packageName) }
+        val values = listOf("") + overlays.map { it.packageName }
+        pref.entries = entries.toTypedArray()
+        pref.entryValues = values.toTypedArray()
+    }
+
+    private fun setupIconPackPreference(key: String) {
+        val pref = findPreference(key) as? ListPreference ?: return
+        val overlays = OverlayPicker.getThemeOverlays(OverlayPicker.ThemeOverlay.IconPack)
+        var iconPackMap = hashMapOf<String, String>()
+        overlays.forEach { iconPackMap = addOverlayToMap(iconPackMap, it.packageName) }
+        val entries = listOf("Default") + iconPackMap.values
+        val values = listOf("") + iconPackMap.keys
+        pref.entries = entries.toTypedArray()
+        pref.entryValues = values.toTypedArray()
+    }
+
+    private fun getTargetName(p: String): String {
+        var targetName = p.substringAfterLast(".").replaceFirstChar { it.uppercase() }
+        val packageInfo = packages.find { it.packageName == p }
+        if (packageInfo != null) {
+            targetName = packageInfo.applicationInfo.loadLabel(activity.packageManager).toString()
+        }
+        return targetName
+    }
+
+    private fun addOverlayToMap(map: HashMap<String, String>, o: String): HashMap<String, String> {
+        val genericValue = o.substringBeforeLast(".")
+        val duplicates = map.filterKeys { it.substringBeforeLast(".") == genericValue }
+        if (duplicates.isEmpty()) {
+            map[o] = getTargetName(o)
+        }
+        return map
     }
 }
