@@ -20,12 +20,9 @@ object MiscSettings : Settings {
     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
     val storageFUSE = "key_misc_storage_fuse"
     val securize = "key_misc_securize"
-    val dynamicsuperuser = "key_misc_dynamic_superuser"
+    val disableDisplayDozeSuspend = "key_misc_disable_display_doze_suspend"
+    val disableExpensiveRenderingMode = "key_misc_disable_expensive_rendering_mode"
     val unihertzdt2w = "key_misc_unihertz_dt2w"
-
-    val stateMap = mapOf(
-        "key_misc_dynamic_superuser" to "persist.sys.phh.dynamic_superuser",
-    )
 
     override fun enabled(context: Context): Boolean {
         Log.d("PHH", "Initializing Misc settings")
@@ -40,7 +37,6 @@ class MiscSettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_misc)
 
-        Tools.updatePreferenceState(this, MiscSettings.stateMap)
 
         // Check enabled status for each preference
         activity?.let { context ->
@@ -51,12 +47,6 @@ class MiscSettingsFragment : PreferenceFragment() {
                     }
                 }
             }
-        }
-
-        // Setup securize handler
-        findPreference(MiscSettings.securize)?.setOnPreferenceClickListener {
-            showSecurizeDialog()
-            true
         }
 
         Log.d("PHH", "Misc settings loaded successfully")
@@ -72,35 +62,6 @@ class MiscSettingsFragment : PreferenceFragment() {
             dividerHeight = 0
             clipToPadding = true
             setPadding(32, paddingTop, 32, paddingBottom)
-        }
-    }
-
-    private fun showSecurizeDialog() {
-        AlertDialog.Builder(activity).apply {
-            setTitle("Removing Root")
-            setMessage("Are you sure? This will remove in-built root access")
-            setPositiveButton(android.R.string.yes) { _, _ -> executeSecurize() }
-            setNegativeButton(android.R.string.no, null)
-        }.show()
-    }
-
-    private fun executeSecurize() {
-        try {
-            val process = Runtime.getRuntime().exec("su")
-            process.outputStream.bufferedWriter().use { writer ->
-                writer.write("/system/bin/phh-securize.sh\n")
-                writer.write("exit\n")
-            }
-
-            val exitCode = process.waitFor()
-            if (exitCode == 0) {
-                Log.d("PHH", "Successfully executed phh-securize.sh")
-                Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
-            } else {
-                Log.e("PHH", "Failed with exit code: $exitCode")
-            }
-        } catch (e: Exception) {
-            Log.e("PHH", "Failed to exec su shell", e)
         }
     }
 }

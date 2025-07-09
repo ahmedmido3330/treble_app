@@ -2,19 +2,6 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="ROOT SOLUTIONS" android:key="key_misc_root_access">
-        <SwitchPreference
-            android:defaultValue="0"
-            android:enabled="true"
-            android:key="key_misc_dynamic_superuser"
-            android:title="Dynamic Superuser"
-            android:summary="Dynamic root access. Disabling it requires a reboot" />
-        <Preference
-            android:title="Securize"
-            android:key="key_misc_securize"
-            android:summary="Removes in-built root" />
-    </PreferenceCategory>
-
     <PreferenceCategory
         android:title="GENERAL"
         android:layout="@layout/preference_category_custom">
@@ -58,7 +45,28 @@
             android:defaultValue="false"
             android:key="key_misc_unihertz_dt2w"
             android:title="Enable Agold/Unihertz DT2W" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_disable_display_doze_suspend"
+            android:title="Force disable display Doze Suspend state to allow AoD on some devices." />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_disable_expensive_rendering_mode"
+            android:title="Disable EXPENSIVE_RENDERING power mode"
+            android:summary="Fixes constant log spam on some MTK devices about power mode 6\nRequires reboot" />
+    </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="SECURIZE"
+        android:layout="@layout/preference_category_custom">
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="true"
+            android:key="key_misc_securize"
+            android:title="Enable Securize"
+            android:summary="Disabling may fix play services on uncertified devices" />
     </PreferenceCategory>
 
 </PreferenceScreen>

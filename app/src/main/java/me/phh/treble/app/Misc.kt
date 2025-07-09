@@ -33,9 +33,17 @@ object Misc: EntryStartup {
                 Log.d("PHH", "Setting storageFUSE to $value")
                 SystemProperties.set("persist.sys.fflag.override.settings_fuse", if (!value) "true" else "false")
             }
-            MiscSettings.dynamicsuperuser -> {
+            MiscSettings.disableDisplayDozeSuspend -> {
+                val value = sp.getBoolean(key, true)
+                SystemProperties.set("persist.sys.phh.disable_display_doze_suspend", if (value) "true" else "false")
+            }
+            MiscSettings.disableExpensiveRenderingMode -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.dynamic_superuser", if (value) "1" else "0")
+                SystemProperties.set("persist.sys.phh.disable_expensive_rendering_mode", if (value) "1" else "0")
+            }
+            MiscSettings.securize -> {
+                val value = sp.getBoolean(key, false)
+                SystemProperties.set("persist.sys.phh.securize", if (value) "1" else "0")
             }
             MiscSettings.unihertzdt2w -> {
                 val value = sp.getBoolean(key, false)
@@ -60,7 +68,6 @@ object Misc: EntryStartup {
 
         // Refresh parameters on boot
         spListener.onSharedPreferenceChanged(sp, MiscSettings.storageFUSE)
-        spListener.onSharedPreferenceChanged(sp, MiscSettings.dynamicsuperuser)
         spListener.onSharedPreferenceChanged(sp, MiscSettings.unihertzdt2w)
     }
 }
