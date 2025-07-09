@@ -6,13 +6,13 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="GROUP"
+        android:title="@@string/title_group"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
-            android:title="GSI Support Group"
+            android:title="@@string/title_gsi_group"
             android:icon="@drawable/user"
-            android:summary="Join">
+            android:summary="@string/summary_gsi_group">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://t.me/acgsi_chat" />
@@ -25,77 +25,77 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="DEVICE SPECIFIC"
+        android:title="@string/title_device_specific"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="asus_settings"
-            android:title="Asus settings"
+            android:title="@string/title_asus"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="mydevice_settings"
-            android:title="My device"
+            android:title="@string/title_mydevice"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="mediatek_settings"
-            android:title="Mediatek settings"
+            android:title="@string/title_mediatek"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="qualcomm_settings"
-            android:title="Qualcomm settings"
+            android:title="@string/title_qualcomm"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="oneplus_settings"
-            android:title="OnePlus settings"
+            android:title="@string/title_oneplus"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="nubia_settings"
-            android:title="Nubia settings"
+            android:title="@string/title_nubia"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="vsmart_settings"
-            android:title="Vsmart settings"
+            android:title="@string/title_vsmart"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="huawei_settings"
-            android:title="Huawei settings"
+            android:title="@string/title_huawei"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="samsung_settings"
-            android:title="Samsung settings"
+            android:title="@string/title_samsung"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="transsion_settings"
-            android:title="Transsion settings"
+            android:title="@string/title_transsion"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="lenovo_settings"
-            android:title="Lenovo settings"
+            android:title="@string/title_lenovo"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="xiaomi_settings"
-            android:title="Xiaomi settings"
+            android:title="@string/title_xiaomi"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="oppo_settings"
-            android:title="Oppo settings"
+            android:title="@string/title_oppo"
             android:icon="@drawable/devices" />
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="doze_settings"
-            android:title="Doze settings"
+            android:title="@string/title_doze"
             android:icon="@drawable/doze" />
     </PreferenceCategory>
 
@@ -105,19 +105,19 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="DISPLAY"
+        android:title="@string/title_display"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="display_settings"
-            android:title="Display settings"
-            android:summary="Backlight, refresh rate and more"
+            android:title="@string/title_display_settings"
+            android:summary="@string/summary_display_settings"
             android:icon="@drawable/display"/>
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="ui_settings"
-            android:title="User interface"
-            android:summary="Layouts, paddings, icons and others"
+            android:title="@string/title_ui_settings"
+            android:summary="@string/summary_ui_settings"
             android:icon="@drawable/ui"/>
     </PreferenceCategory>
 
@@ -127,20 +127,20 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="AUDIO"
+        android:title="@string/title_audio"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="audio_settings"
-            android:title="Audio settings"
-            android:summary="Bluetooth and general fixes"
+            android:title="@string/title_audio_settings"
+            android:summary="@string/summary_audio_settings"
             android:icon="@drawable/audio" />
 
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="audiofx_settings"
-            android:title="Audio effects"
-            android:summary="Audio modifications pre-included by your vendor"
+            android:title="@string/title_audiofx"
+            android:summary="@string/summary_audiofx"
             android:icon="@drawable/audiofx" />
     </PreferenceCategory>
 
@@ -150,20 +150,20 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="TELEPHONY"
+        android:title="@string/title_telephony"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="telephony_settings"
-            android:title="Telephony settings"
-            android:summary="Telephony, signal, ril and 5G options"
+            android:title="@string/title_display_settings"
+            android:summary="@string/summary_telephony"
             android:icon="@drawable/telephony" />
 
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="ims_settings"
-            android:title="IMS settings"
-            android:summary="VoLTE is here"
+            android:title="@string/title_ims_settings"
+            android:summary="@string/summary_ims"
             android:icon="@drawable/ims" />
     </PreferenceCategory>
 
@@ -173,13 +173,13 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="CAMERA"
+        android:title="@string/title_camera"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="camera_settings"
-            android:title="Camera settings"
-            android:summary="Useful camera things"
+            android:title="@string/title_camera_settings"
+            android:summary="@string/summary_camera"
             android:icon="@drawable/camera" />
     </PreferenceCategory>
 
@@ -189,13 +189,13 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="MISCELLANEOUS"
+        android:title="@string/title_misc"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="misc_settings"
-            android:title="Misc settings"
-            android:summary="Fingerprint fix and other stuff"
+            android:title="@string/title_misc_settings"
+            android:summary="@string/summary_misc"
             android:icon="@drawable/miscellaneous" />
     </PreferenceCategory>
 
@@ -205,13 +205,13 @@
         android:enabled="false" />
 
     <PreferenceCategory
-        android:title="DEBUGGING"
+        android:title="@string/title_debugging"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="debug_settings"
-            android:title="Debug settings"
-            android:summary="Debug sensors"
+            android:title="@string/title_debug_settings"
+            android:summary="@string/summary_debug"
             android:icon="@drawable/debug" />
     </PreferenceCategory>
 

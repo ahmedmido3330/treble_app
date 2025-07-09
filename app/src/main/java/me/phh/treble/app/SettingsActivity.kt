@@ -135,10 +135,19 @@ class SettingsActivity : Activity() {
             }
 
             val preferenceManager = PreferenceManager.getDefaultSharedPreferences(preference.context)
-            preference.onPreferenceChangeListener.onPreferenceChange(
-                preference,
-                preferenceManager.getString(preference.key, "")
-            )
+            val rawValue = preferenceManager.all[preference.key]
+
+            // Verifica o tipo antes de chamar getString()
+            val value = when (rawValue) {
+                is String -> rawValue
+                else -> {
+                    // Remove o valor antigo com tipo errado
+                    preferenceManager.edit().remove(preference.key).apply()
+                    ""
+                }
+            }
+
+            preference.onPreferenceChangeListener.onPreferenceChange(preference, value)
         }
     }
 }

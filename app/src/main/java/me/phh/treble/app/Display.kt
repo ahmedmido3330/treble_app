@@ -103,7 +103,15 @@ object Display: EntryStartup {
                 val value = sp.getBoolean(key, false)
                 // Note: Reversed value because the prop is enabling
                 SystemProperties.set("persist.sys.phh.enable_sf_hwc_backpressure", if (value) "0" else "1")
-
+            }
+            DisplaySettings.sfBlurEnabled -> {
+                val enabled = sp.getBoolean(key, false)
+                val propValue = if (enabled) "gaussian" else "disabled"
+                SystemProperties.set("persist.sys.phh.sf.background_blur", propValue)
+            }
+            DisplaySettings.sfRenderEngineBackend -> {
+                val value = sp.getString(key, "")
+                SystemProperties.set("debug.renderengine.backend", value)
             }
         }
     }

@@ -17,6 +17,8 @@ object DisplaySettings : Settings {
     val aod = "key_display_aod"
     val disableSfGlBackpressure = "key_display_disable_sf_gl_backpressure"
     val disableSfHwcBackpressure = "key_display_disable_sf_hwc_backpressure"
+    val sfBlurEnabled = "key_display_sf_blur_enabled"
+    val sfRenderEngineBackend = "key_display_sf_renderengine_backend"
 
     override fun enabled(context: Context): Boolean {
         Log.d("PHH", "Initializing Display settings")
@@ -29,7 +31,14 @@ class DisplaySettingsFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.pref_display)
 
+        val prefs = android.preference.PreferenceManager.getDefaultSharedPreferences(activity)
+        if (prefs.all[DisplaySettings.sfRenderEngineBackend] is Boolean) {
+            prefs.edit().remove(DisplaySettings.sfRenderEngineBackend).apply()
+        }
+
         SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.displayFps)!!)
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfBlurEnabled)!!)
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfRenderEngineBackend)!!)
 
         val fpsPref = findPreference(DisplaySettings.displayFps) as ListPreference
         val displayManager = activity?.getSystemService(DisplayManager::class.java)
