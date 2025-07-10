@@ -112,7 +112,7 @@
     <string name="esco_size_bt">Ajustar o tamanho da unidade de transporte eSCO</string>
 
     <!-- Ajustes para Bluetooth -->
-    <string name="bt_workgrounds_title">\nAJUSTES DE BLUETOOTH</string>
+    <string name="bt_workgrounds_title">\nAJUSTES DO BLUETOOTH</string>
     <string name="disable_le_apcf">Desativar recurso estendido LE APCF</string>
     <string name="le_acpf_sumarry">Corrigir falhas em alguns dispositivos antigos</string>
     <string name="cap_le_vendorversion">Limitar versão do fornecedor LE</string>
