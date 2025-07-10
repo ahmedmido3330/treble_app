@@ -92,7 +92,7 @@
     <string name="title_debug_settings">Debug settings</string>
     <string name="summary_debug">Debug sensors</string>
 
-!-- Pref Audio -->
+<!-- Pref Audio -->
     <!-- Title General-->
     <string name="title_prefaudio">General</string>
     <string name="alt_audio_police">use alternative audio policy</string>
