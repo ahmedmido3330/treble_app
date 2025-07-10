@@ -94,6 +94,7 @@
 
 !-- Pref Audio -->
     <!-- Title General-->
+    <string name="title_prefaudio">General</string>
     <string name="alt_audio_police">use alternative audio policy</string>
     <string name="alt_headset_detect_title">Use alternative way to detect headsets</string>
     <string name="disable_audio_effects_title">Disable audio effects</string>
