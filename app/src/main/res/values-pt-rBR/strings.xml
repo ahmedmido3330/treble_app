@@ -93,6 +93,16 @@
     <string name="title_debug_settings">Configurações de depuração</string>
     <string name="summary_debug">Depurar sensores</string>
 
+<!-- Geral Pref audio-->
+    <string name="title_prefaudio">Geral</string>
+    <string name="alt_audio_police">Use o áudio police alternativo</string>
+    <string name="alt_headset_detect_title">Use o método alternativo para a detecção dos fones de ouvido</string>
+    <string name="disable_audio_effects_title">Desativar os efeitos de áudio</string>
+    <string name="disable_fast_audio">Desativar o fast áudio</string>
+    <string name="disable_voicecall_route">Desativar &quot;Voice Call em&quot; rota</string>
+    <!-- Summary -->
+    <string name="disable_headset_detect_sumarry">Correção para reconhecimento de fones de ouvido</string>
+    
 <!--     Asus -->
     <!-- Tela -->
     <string name="title_display_asus">TELA</string>
