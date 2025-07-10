@@ -48,13 +48,13 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="true"
             android:key="key_bt_dynamic_sysbta"
-            android:title="Use System Wide BT HAL" />
+            android:title="@string/wide_bt_hal" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:defaultValue="1"
             android:key="key_bt_max_bluetooth_audio_devices"
-            android:title="Set maximum connected bluetooth audio devices"
+            android:title="@string/max_connect_bt_audio"
             android:inputType="number" />
 
         <ListPreference
@@ -63,24 +63,24 @@
             android:key="key_bt_esco_transport_unit_size"
             android:entries="@array/pref_audio_esco_transport_size"
             android:entryValues="@array/pref_audio_esco_transport_size_values"
-            android:title="Set eSCO transport unit size" />
+            android:title="@string/esco_size_bt" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="\nBLUETOOTH WORKAROUNDS"
+        android:title="@string/bt_workgrounds_title"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:key="key_bt_disable_le_apcfe"
             android:defaultValue="false"
-            android:title="Disable LE APCF Extended features"
-            android:summary="Fix crashing on some legacy devices" />
+            android:title="@string/disable_le_apcf"
+            android:summary="@string/le_acpf_sumarry" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_bt_le_version_cap"
-            android:title="Cap LE vendor version"
+            android:title="@string/cap_le_vendorversion"
             android:inputType="number"
             android:summary="Default" />
 
@@ -90,33 +90,33 @@
             android:key="key_bt_workarounds"
             android:entries="@array/pref_audio_bt_workarounds"
             android:entryValues="@array/pref_audio_bt_workarounds_values"
-            android:title="Predefined workarounds" />
+            android:title="@string/predefined_workground_bluetooth" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_bt_unsupported_commands"
-            android:title="Set unsupported Bluetooth commands"
+            android:title="@string/set_bluetooth_commands_unssuported_title"
             android:inputType="text"
             android:summary="Default" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_bt_unsupported_og"
-            android:title="Set unsupported Bluetooth og features"
+            android:title="@string/unssuported_bluetooth_of_features"
             android:inputType="text"
             android:summary="Default" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_bt_unsupported_le"
-            android:title="Set unsupported Bluetooth LE features"
+            android:title="@string/unssuported_le_features_bluetooth"
             android:inputType="text"
             android:summary="Default" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_bt_unsupported_states"
-            android:title="Set unsupported Bluetooth states"
+            android:title="@string/unssuported_bluetooth_stats"
             android:inputType="text"
             android:summary="Default" />
     </PreferenceCategory>
