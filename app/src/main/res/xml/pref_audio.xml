@@ -3,41 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="GENERAL"
+        android:title="@string/title_prefaudio"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_audio_alternate_audiopolicy"
-            android:title="Use alternate audio policy" />
+            android:title="@string/alt_audio_police" />
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_audio_headset_devinput"
-            android:title="Use alternate way to detect headsets"
-            android:summary="Standard fix for wired headphones recognition"/>
+            android:title="@string/alt_headset_detect_title"
+            android:summary="@string/disable_headset_detect_sumarry"/>
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_audio_disable_audio_effects"
-            android:title="Disable audio effects"
-            android:summary="Disable all of thems on vendor side"/>
+            android:title="@string/disable_audio_effects_title"
+            android:summary="@string/disable_audio_effects_sumarry"/>
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_audio_disable_fast_audio"
-            android:title="Disable fast audio"
-            android:summary="Should fix cracked/broken/stutter audio on devices which can't handle it"/>
+            android:title="@string/disable_fast_audio"
+            android:summary="@string/disable_fast_audio_sumarry"/>
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_audio_disable_voice_call_in"
-            android:title="Disable &quot;Voice Call In&quot; route"
-            android:summary="May fix echo or non-working audio on calls\nRequires a reboot" />
+            android:title="@string/disable_voicecall_route"
+            android:summary="@string/voicecall_route_sumarry" />
 
     </PreferenceCategory>
 
