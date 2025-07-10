@@ -108,7 +108,7 @@
     <!-- Bluetooth -->
     <string name="wide_bt_hal">Use System Wide BT HAL</string>
     <string name="max_connect_bt_audio">Set maximum connected bluetooth audio devices</string>
-    <string name="esco_size_bt"></string>
+    <string name="esco_size_bt">Set eSCO transport unit size</string>
      <!-- Bluetooth Workgrounds -->
     <string name="bt_workgrounds_title">\nBLUETOOTH WORKAROUNDS</string>
     <string name="disable_le_apcf">Disable LE APCF Extended feature</string>
