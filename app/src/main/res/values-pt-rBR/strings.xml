@@ -106,6 +106,24 @@
     <string name="disable_audio_effects_sumarry">Desativar todos os efeitos de áudio do lado do Vendor</string>
     <string name="disable_fast_audio_sumarry">Deve corrigir áudio quebrado/tremendo/cortado em dispositivos</string>
     <string name="voicecall_route_sumarry">Pode corrigir eco ou áudio não funcional em chamadas\nRequer reiniciar o dispositivo</string>
+    <!-- Bluetooth -->
+    <string name="wide_bt_hal">Usar HAL Bluetooth em todo o sistema</string>
+    <string name="max_connect_bt_audio">Definir número máximo de dispositivos de áudio Bluetooth conectados</string>
+    <string name="esco_size_bt"></string>
+
+    <!-- Ajustes para Bluetooth -->
+    <string name="bt_workgrounds_title">\nAJUSTES DE BLUETOOTH</string>
+    <string name="disable_le_apcf">Desativar recurso estendido LE APCF</string>
+    <string name="le_acpf_sumarry">Corrigir falhas em alguns dispositivos antigos</string>
+    <string name="cap_le_vendorversion">Limitar versão do fornecedor LE</string>
+    <string name="predefined_workground_bluetooth">Ajustes predefinidos</string>
+    <string name="set_bluetooth_commands_unssuported_title">Definir comandos Bluetooth não suportados</string>
+    <string name="unssuported_bluetooth_of_features">Definir recursos Bluetooth OG não suportados</string>
+    <string name="unssuported_le_features_bluetooth">Definir recursos Bluetooth LE não suportados</string>
+    <string name="unssuported_bluetooth_stats">Definir estados Bluetooth não suportados</string>
+
+<!-- Xiaomi -->
+    <string name="dt2w">Ativar DT2W</string>
     
 <!--     Asus -->
     <!-- Tela -->
