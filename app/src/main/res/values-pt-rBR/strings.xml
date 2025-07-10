@@ -109,7 +109,7 @@
     <!-- Bluetooth -->
     <string name="wide_bt_hal">Usar HAL Bluetooth em todo o sistema</string>
     <string name="max_connect_bt_audio">Definir número máximo de dispositivos de áudio Bluetooth conectados</string>
-    <string name="esco_size_bt"></string>
+    <string name="esco_size_bt">Ajustar o tamanho da unidade de transporte eSCO</string>
 
     <!-- Ajustes para Bluetooth -->
     <string name="bt_workgrounds_title">\nAJUSTES DE BLUETOOTH</string>
