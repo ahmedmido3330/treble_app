@@ -187,5 +187,9 @@
     <!-- vsmart -->
     <string name="tap_to_wake">Enable double tap to wake</string>
 
+    <!-- transsion tab -->
+    <string name="display_title">DISPLAY</string>
+    <string name="other_title">OTHER</string>
+    <string name="otg_usb">Enable USB OTG</string>
     
 </resources>
