@@ -307,5 +307,21 @@
     <string name="grapicissueshuawei_summary">recommended if ui is blurry</string>
     <string name="fastcharge_huawei">Huawei Fast Charge</string>
     
+    <!-- Samsung -->
+    <string name="sterioaudio">Enable stereo audio mode</string>
+    <string name="reversecharge">Enable reversed wireless charging(If applicable)</string>
+    <string name="disable_backmic">Disable Built-In Back Mic</string>
+    <string name="disablebackmic_summary">May fix broken mic on video recording</string>
+    <string name="samsungallcam">Enable access to all cameras</string>
+    <string name="samsung1text">Requires Q vendor</string>
+    <string name="samsung2text">Usually values are integers between 1 and 5</string>
+    <string name="samsungflash">Set flash strength</string>
+    <!-- Samsung Workarounds -->
+    <string name="samsungtitle3">WORKAROUNDS</string>
+    <string name="samsung4">Enable extra sensors</string>
+    <string name="samsung5">Enable workaround for white-ish screen</string>
+    <string name="fingbroken">Enable workaround for white-ish screen</string>
+    <string name="backlightsamsung">Set backlight scale/max backlight level</string>
+
     
 </resources>
