@@ -268,5 +268,38 @@
     <string name="trebleappkill_summary">Para economizar alguns toques</string>
     <string name="debbugablemode">Definir modo de depuração</string>
     <string name="debbugablemode_summary">Toggle insecure adb and related</string>
+
+    <!-- doze -->
+    <string name="hardware_gesturedoze">Ativar gesto Handwave</string>
+    <string name="outofpocket_gesturedoze">Ativar gesto out-of-pocket</string>
+    <string name="chopgesture">Ativar gesto ChopChop</string>
+
+    <!-- tela -->
+    <string name="forcefreshrate_display">Forçar taxa de atualização</string>
+    <string name="dynamicfrashrate_display">Taxa de atualização dinâmica</string>
+    <string name="dynamicfrashrate_summary">Ajusta a taxa de atualização com base no conteúdo da tela\nRequer reinicialização</string>
+    <string name="sfgl">Desativar pressão de SF GL</string>
+    <string name="sfgl_summary">Pode melhorar o desempenho de renderização\nRequer reinicialização</string>
+    <string name="sfhwc_disable">Desativar pressão de SF HWC</string>
+    <string name="sfhwc_disablesummary">Pode melhorar o desempenho de renderização</string>
+    <string name="hw_overlay">Desativar sobreposições por hardware</string>
+    <string name="hw_overlaysummary">Consome mais CPU e bateria</string>
+    <string name="forceallowaod">Forçar permissão para Always-On Display</string>
+
+    <!-- aba2 -->
+    <string name="display_tab2">MOTOR DE RENDERIZAÇÃO</string>
+    <string name="renderengine">Backend do motor de renderização</string>
+
+    <!-- Desfoque -->
+    <string name="blureffects">Ativar efeitos de desfoque</string>
+    <string name="blureffects_summary">Pode impactar o desempenho em dispositivos basicos</string>
+
+    <!-- Retroiluminação -->
+    <string name="backlight_displaytitle">\nILUMINAÇÂO</string>
+    <string name="linearbrightness">Definir curva de brilho alternativa</string>
+    <string name="alt_backlight">Forçar escala alternativa de iluminação</string>
+    <string name="summary_altbacklight">Requer desligar/ligar a tela</string>
+    <string name="backlightdisable">Desativar iluminação usando botões físicos</string>
+    <string name="backlight_lowest">Permitir definir brilho no mínimo possível</string>
     
 </resources>
