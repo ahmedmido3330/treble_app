@@ -191,5 +191,20 @@
     <string name="display_title">DISPLAY</string>
     <string name="other_title">OTHER</string>
     <string name="otg_usb">Enable USB OTG</string>
+
+      <!-- qualcoom -->
+    <string name="alternative_camera_profile">Use alternative camera profile</string>
+    <string name="soundvolume">Disable sound volume effect</string>
+    <string name="soundvolume_summary">May fix audio distorsion</string>
+    <!-- qualcoom VoIP -->
+    <string name="sterio_voip">Disable stereo support on VoIP</string>
+    <string name="sterio_voip_summary">May fix high pitched audio. Requires a reboot</string>
+    <string name="voip_directoutput">Define VoIP as Direct Output</string>
+    <string name="voip_directoutput_summary">Should fix high pitched audio. Requires a reboot</string>
+    <!-- qualcoom mobilenetwork -->
+    <string name="mobile_network_title">MOBILE NETWORK</string>
+    <string name="qcrild_boot">Restart qcrild on boot</string>
+    <string name="qcrild_boot_summary">Workaround for incoming SMS\nCan lead to no-audio on calls on some devices</string>
+  
     
 </resources>
