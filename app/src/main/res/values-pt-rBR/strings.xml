@@ -225,5 +225,15 @@
     <!-- Lenovo -->
     <string name="lenovo_stylus_pen">Ativar supporte a Caneta Stylus</string>
     
+    <!-- OnePlus -->
+    <string name="oneplus_display">TELA</string>
+    <string name="oneplus_displaymode">Modo de exibição</string>
+    <string name="oneplus_brightness">Modo de alto brilho</string>
+    <string name="oneplusother">DIVERSOS</string>
+
+    <!-- Oppo -->
+    <string name="touch">Touchscreen</string>
+    <string name="gamemode_oppo">Ativar modo de jogo</string>
+    <string name="dc_diming">Ativar DC Diming</string>
     
 </resources>
