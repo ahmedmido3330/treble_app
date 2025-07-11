@@ -206,5 +206,12 @@
     <string name="qcrild_boot">Restart qcrild on boot</string>
     <string name="qcrild_boot_summary">Workaround for incoming SMS\nCan lead to no-audio on calls on some devices</string>
   
+    <!-- ims -->
+    <string name="title_ims_requeriments">REQUERIMENTS</string>
+    <string name="ims_apn">Create IMS APN</string>
+    <string name="download_ims">Download and install IMS APK</string>
+    <string name="key_ims">Request IMS network</string>
+    <string name="force_ims_call">Force the presence of 4G Calling setting</string>
+    
     
 </resources>
