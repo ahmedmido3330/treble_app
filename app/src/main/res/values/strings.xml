@@ -183,5 +183,9 @@
 <!-- Sys UI -->
     <string name="sysui_restart">Requires SystemUI restart</string>
     <string name="root_accesses">Requieres root access</string>
+
+    <!-- vsmart -->
+    <string name="tap_to_wake">Enable double tap to wake</string>
+
     
 </resources>
