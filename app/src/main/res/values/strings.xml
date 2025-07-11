@@ -264,6 +264,11 @@
     <string name="trebleappkill_summary">To save a few taps</string>
     <string name="debbugablemode">Set debuggable mode</string>
     <string name="debbugablemode_summary">Toggle insecure adb and related</string>
+    
+    <!-- doze -->
+    <string name="hardware_gesturedoze">Enable Handwave gesture</string>
+    <string name="outofpocket_gesturedoze">Enable out-of-pocket gesture</string>
+    <string name="chopgesture">Enable Chop Chop gesture</string>
 
     
 </resources>
