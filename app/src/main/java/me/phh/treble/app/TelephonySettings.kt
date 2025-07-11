@@ -109,7 +109,7 @@ class TelephonySettingsFragment : PreferenceFragment() {
     private fun resetSimCountDialog() {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(getString(R.string.reset_simcount))
-        .setMessage(getString(R.string.reset_simcount_summary))
+        .setMessage(getString(R.string.reset_simcount_summary_telephone))
         .setPositiveButton(android.R.string.yes) { dialog, which ->
             SystemProperties.set("persist.sys.phh.sim_count", "reset")
             Toast.makeText(activity, R.string.toast_reboot, Toast.LENGTH_LONG).show()
