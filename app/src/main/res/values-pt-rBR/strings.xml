@@ -122,6 +122,35 @@
     <string name="unssuported_le_features_bluetooth">Definir recursos Bluetooth LE não suportados</string>
     <string name="unssuported_bluetooth_stats">Definir estados Bluetooth não suportados</string>
 
+    <!-- Pref UI -->
+    <string name="two_plane_layout">Layout em duas colunas</string>
+    <string name="two_plane_layout_summary">Ativar layout para tablet. Requer reiniciar os apps</string>
+    <string name="disable_navigation_bar">Forçar desativação da barra de navegação</string>
+    <string name="disable_navigation_bar_summary">Requer reinicialização</string>
+    <string name="pointer_type">Tipo de ponteiro</string>
+
+    <!-- LockScreen -->
+    <string name="lckscreen">TELA DE BLOQUEIO</string>
+    <string name="fod_icon_color">Cor do ícone FOD</string>
+
+    <!-- Status Bar -->
+    <string name="stats_bar">BARRA DE STATUS</string>
+    <string name="bar_top_padding">Definir espaçamento superior da barra de status</string>
+    <string name="bar_start_padding">Definir espaçamento inicial da barra de status</string>
+    <string name="bar_end_padding">Definir espaçamento final da barra de status</string>
+
+    <!-- STYLES -->
+    <string name="styles_title">ESTILOS</string>
+    <string name="accent_color">Cor de destaque</string>
+    <string name="icon_shape">Formato do ícone</string>
+    <string name="icon_pack">Pacote de ícones</string>
+    <string name="font_family">Família da fonte</string>
+
+    <!-- TOOLS -->
+    <string name="tools_title">FERRAMENTAS</string>
+    <string name="restart_sysui_tools_option">Reiniciar SystemUI</string>
+
+    
 <!-- Xiaomi -->
     <string name="dt2w">Ativar DT2W</string>
     
@@ -155,6 +184,6 @@
     <string name="title_force_cognitive">Suporte forward-port para forceCognitive</string>
     <string name="summary_force_cognitive">Necessário em alguns dispositivos Mediatek</string>
 
-
+    
 
 </resources>
