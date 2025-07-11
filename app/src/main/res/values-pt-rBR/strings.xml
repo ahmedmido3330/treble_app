@@ -184,6 +184,8 @@
     <string name="title_force_cognitive">Suporte forward-port para forceCognitive</string>
     <string name="summary_force_cognitive">Necessário em alguns dispositivos Mediatek</string>
 
-    
+<!-- Sys UI -->
+    <string name="sysui_restart">Precisa reiniciar o SystemUI</string>
+    <string name="root_accesses">Precisa de accesso ao root</string>    
 
 </resources>
