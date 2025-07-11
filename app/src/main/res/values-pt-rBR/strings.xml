@@ -221,5 +221,9 @@
     <string name="title_ims2">PROBLEMAS COM SOLUÇÃO ALTERNATIVA</string>
     <string name="ims2_title_call_incoming">Permitir thread de binder em chamadas recebidas</string>
     <string name="ims2_summary">Solução alternativa para chamadas 4G\nRequer reinicialização</string>
+
+    <!-- Lenovo -->
+    <string name="lenovo_stylus_pen">Ativar supporte a Caneta Stylus</string>
+    
     
 </resources>
