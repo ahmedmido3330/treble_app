@@ -191,5 +191,9 @@
     <!-- vsmart -->
     <string name="tap_to_wake">Ativar toque duplo para ligar a tela</string>
 
+    <!-- transsion tab -->
+    <string name="display_title">TELA</string>
+    <string name="other_title">OUTROS</string>
+    <string name="otg_usb">Ativar USB OTG</string>
     
 </resources>
