@@ -7,6 +7,8 @@ import android.os.SystemProperties
 import android.util.Log
 import androidx.preference.PreferenceManager
 
+import vendor.ims.zenmotion.V1_0.IZenMotion;
+
 import vendor.mediatek.hardware.agolddaemon.IAgoldDaemon
 
 object Misc: EntryStartup {
@@ -57,6 +59,14 @@ object Misc: EntryStartup {
                     Log.d("PHH", "Setting agold touch mode failed", t)
                 }
             }
+            MiscSettings.dt2w -> {
+                // Let's try all known dt2w
+                val value = sp.getBoolean(key, false)
+                val asusSvc = try { IZenMotion.getService() } catch(e: Exception) { null }
+                if(asusSvc != null) {
+                    asusSvc.setDclickEnable(if(value) 1 else 0)
+                }
+            }
         }
     }
 
@@ -69,5 +79,6 @@ object Misc: EntryStartup {
         // Refresh parameters on boot
         spListener.onSharedPreferenceChanged(sp, MiscSettings.storageFUSE)
         spListener.onSharedPreferenceChanged(sp, MiscSettings.unihertzdt2w)
+        spListener.onSharedPreferenceChanged(sp, MiscSettings.dt2w)
     }
 }

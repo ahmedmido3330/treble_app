@@ -23,6 +23,7 @@ object MiscSettings : Settings {
     val disableDisplayDozeSuspend = "key_misc_disable_display_doze_suspend"
     val disableExpensiveRenderingMode = "key_misc_disable_expensive_rendering_mode"
     val unihertzdt2w = "key_misc_unihertz_dt2w"
+    val dt2w = "key_misc_dt2w"
 
     override fun enabled(context: Context): Boolean {
         Log.d("PHH", "Initializing Misc settings")
