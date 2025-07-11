@@ -217,5 +217,9 @@
     <string name="download_ims">Baixar e Instalar IMS APK</string>
     <string name="key_ims">Solicitar conexão IMS</string>
     <string name="force_ims_call">Forçar 4g em ligações</string>
+    <!-- Solução Alternativa -->
+    <string name="title_ims2">PROBLEMAS COM SOLUÇÃO ALTERNATIVA</string>
+    <string name="ims2_title_call_incoming">Permitir thread de binder em chamadas recebidas</string>
+    <string name="ims2_summary">Solução alternativa para chamadas 4G\nRequer reinicialização</string>
     
 </resources>
