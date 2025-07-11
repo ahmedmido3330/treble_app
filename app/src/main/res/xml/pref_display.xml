@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="GENERAL"
+        android:title="@string/cameratitle"
         android:layout="@layout/preference_category_custom">
         <ListPreference
             android:layout="@layout/preference_list_custom"
@@ -11,41 +11,41 @@
             android:entries="@array/pref_display_fps"
             android:entryValues="@array/pref_display_fps_values"
             android:key="key_display_display_fps"
-            android:title="Force Refresh rate" />
+            android:title="@string/forcefreshrate_display" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_dynamic_fps"
-            android:title="Dynamic Refresh rate"
-            android:summary="Adjust refresh rate based on screen content\nRequires reboot"/>
+            android:title="@string/dynamicfrashrate_display"
+            android:summary="@string/dynamicfrashrate_summary"/>
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_disable_sf_gl_backpressure"
-            android:title="Disable SF GL backpressure"
-            android:summary="Might improve rendering performance\nRequires reboot"/>
+            android:title="@string/sfgl"
+            android:summary="@string/sfgl_summary"/>
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_disable_sf_hwc_backpressure"
-            android:title="Disable SF HWC backpressure"
-            android:summary="Might improve rendering performance"/>
+            android:title="@string/sfhwc_disable"
+            android:summary="@string/sfhwc_disablesummary"/>
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_no_hwcomposer"
-            android:title="Disable HW overlays"
-            android:summary="Eats more CPU and battery" />
+            android:title="@string/hw_overlay"
+            android:summary="@string/hw_overlaysummary" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_aod"
-            android:title="Force allow Always-On Display" />
+            android:title="@string/forceallowaod" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -57,25 +57,25 @@
             android:entries="@array/pref_display_sf_renderengine_backend"
             android:entryValues="@array/pref_display_sf_renderengine_backend_values"
             android:key="key_display_sf_renderengine_backend"
-            android:title="Render engine backend" />
+            android:title="@string/renderengine" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_display_sf_blur_enabled"
-            android:title="Enable blur effects"
-            android:summary="May impact performance on low-end devices" />
+            android:title="@string/blureffects"
+            android:summary="@string/blureffects_summary" />
         </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="\nBACKLIGHT"
+        android:title="@string/backlight_displaytitle"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_backlight_low_gamma_brightness"
-            android:title="Set alternative brightness curve"
-            android:summary="Requires a reboot" />
+            android:title="@string/linearbrightness"
+            android:summary="@string/disable_navigation_bar_summary" />
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
@@ -85,20 +85,20 @@
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_backlight_backlight_scale"
-            android:title="Force alternative backlight scale"
-            android:summary="Requires turn off/on screen" />
+            android:title="@string/alt_backlight"
+            android:summary="@string/summary_altbacklight" />
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_backlight_disable_buttons_backlight"
-            android:title="Disable backlight of hardware buttons"
-            android:summary="Requires a reboot" />
+            android:title="@string/backlightdisable"
+            android:summary="@string/disable_navigation_bar_summary" />
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_backlight_minimal_brightness"
             android:singleLineTitle="false"
-            android:title="Allows setting brightness to the lowest possible" />
+            android:title="@string/backlight_lowest" />
     </PreferenceCategory>
 
 </PreferenceScreen>

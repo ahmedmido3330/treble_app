@@ -35,9 +35,6 @@
     <string name="update_props">Updating Props</string>
     <string name="props_summary">Will bash from an URL, continue?</string>
     <string name="restart_system_ui">Restarting System UI</string>
-    <string name="reset_simcount">Reset SIM Count</string>
-    <string name="reset_simcount_summary">Requires a reboot, continue?</string>
-
 
 
     <!-- Categorias -->
@@ -122,6 +119,35 @@
     <string name="unssuported_le_features_bluetooth">Definir recursos Bluetooth LE não suportados</string>
     <string name="unssuported_bluetooth_stats">Definir estados Bluetooth não suportados</string>
 
+    <!-- Pref UI -->
+    <string name="two_plane_layout">Layout em duas colunas</string>
+    <string name="two_plane_layout_summary">Ativar layout para tablet. Requer reiniciar os apps</string>
+    <string name="disable_navigation_bar">Forçar desativação da barra de navegação</string>
+    <string name="disable_navigation_bar_summary">Requer reinicialização</string>
+    <string name="pointer_type">Tipo de ponteiro</string>
+
+    <!-- LockScreen -->
+    <string name="lckscreen">TELA DE BLOQUEIO</string>
+    <string name="fod_icon_color">Cor do ícone FOD</string>
+
+    <!-- Status Bar -->
+    <string name="stats_bar">BARRA DE STATUS</string>
+    <string name="bar_top_padding">Definir espaçamento superior da barra de status</string>
+    <string name="bar_start_padding">Definir espaçamento inicial da barra de status</string>
+    <string name="bar_end_padding">Definir espaçamento final da barra de status</string>
+
+    <!-- STYLES -->
+    <string name="styles_title">ESTILOS</string>
+    <string name="accent_color">Cor de destaque</string>
+    <string name="icon_shape">Formato do ícone</string>
+    <string name="icon_pack">Pacote de ícones</string>
+    <string name="font_family">Família da fonte</string>
+
+    <!-- TOOLS -->
+    <string name="tools_title">FERRAMENTAS</string>
+    <string name="restart_sysui_tools_option">Reiniciar SystemUI</string>
+
+    
 <!-- Xiaomi -->
     <string name="dt2w">Ativar DT2W</string>
     
@@ -155,6 +181,171 @@
     <string name="title_force_cognitive">Suporte forward-port para forceCognitive</string>
     <string name="summary_force_cognitive">Necessário em alguns dispositivos Mediatek</string>
 
+<!-- Sys UI -->
+    <string name="sysui_restart">Precisa reiniciar o SystemUI</string>
+    <string name="root_accesses">Precisa de accesso ao root</string>    
 
+    <!-- vsmart -->
+    <string name="tap_to_wake">Ativar toque duplo para ligar a tela</string>
 
+    <!-- transsion tab -->
+    <string name="display_title">TELA</string>
+    <string name="other_title">OUTROS</string>
+    <string name="otg_usb">Ativar USB OTG</string>
+
+    <!-- qualcoom -->
+    <string name="alternative_camera_profile">Usar perfil de câmera alternativo</string>
+    <string name="soundvolume">Desativar efeitos de som</string>
+    <string name="soundvolume_summary">Corrigir distorção de áudio</string>
+    <!-- qualcomm VoIP -->
+    <string name="sterio_voip">Desativar suporte a estéreo no VoIP</string>
+    <string name="sterio_voip_summary">Pode corrigir áudio agudo. Requer reinicialização</string>
+    <string name="voip_directoutput">Definir VoIP como saída direta</string>
+    <string name="voip_directoutput_summary">Deve corrigir áudio agudo. Requer reinicialização</string>
+
+    <!-- qualcomm rede móvel -->
+    <string name="mobile_network_title">REDE MÓVEL</string>
+    <string name="qcrild_boot">Reiniciar qcrild na inicialização</string>
+    <string name="qcrild_boot_summary">Solução alternativa para SMS recebidos\nPode causar falta de áudio em chamadas em alguns dispositivos</string>
+    
+        <!-- ims -->
+    <string name="title_ims_requeriments">REQUESITOS</string>
+    <string name="ims_apn">Criar IMS APN</string>
+    <string name="download_ims">Baixar e Instalar IMS APK</string>
+    <string name="key_ims">Solicitar conexão IMS</string>
+    <string name="force_ims_call">Forçar 4g em ligações</string>
+    <!-- Solução Alternativa -->
+    <string name="title_ims2">PROBLEMAS COM SOLUÇÃO ALTERNATIVA</string>
+    <string name="ims2_title_call_incoming">Permitir thread de binder em chamadas recebidas</string>
+    <string name="ims2_summary">Solução alternativa para chamadas 4G\nRequer reinicialização</string>
+
+    <!-- Lenovo -->
+    <string name="lenovo_stylus_pen">Ativar supporte a Caneta Stylus</string>
+    
+    <!-- OnePlus -->
+    <string name="oneplus_display">TELA</string>
+    <string name="oneplus_displaymode">Modo de exibição</string>
+    <string name="oneplus_brightness">Modo de alto brilho</string>
+    <string name="oneplusother">DIVERSOS</string>
+
+    <!-- Oppo -->
+    <string name="touch">Touchscreen</string>
+    <string name="gamemode_oppo">Ativar modo de jogo</string>
+    <string name="dc_diming">Ativar DC Diming</string>
+
+    <!-- telefone -->
+    <string name="smsc">Definir valor SMSC</string>
+    <string name="simcount">Contagem de SIM</string>
+
+    <string name="reset_simcount">Redefinir contagem de SIM</string>
+    <string name="reset_simcount_summary_telephone">Redefinir contagem de SIM para os valores padrão\nRequer reinicialização</string>
+
+    <string name="signal">Método do medidor de sinal</string>
+    <string name="restart_ril">Reiniciar RIL automaticamente</string>
+
+    <string name="patch_smsc">Corrigir SMSC</string>
+    <string name="pachsmsc_summary">Se você não consegue enviar mensagens, principalmente em dispositivos Samsung, desative a correção de SMSC</string>
+
+    <string name="simcard">Remover subsistema de telefonia</string>
+    <string name="simcart_summary">Para dispositivos sem cartão SIM</string>
+
+    <string name="forcenetwork">Forçar exibição de rede 5G</string>
+    <string name="forcenetwork_summary">Exibe 5G como opção para o tipo de rede preferencial\nRequer reinicialização</string>
+
+    <string name="restrictnetwork">Modo de rede restrita</string>
+    <string name="restrictnetwork_summary">Precisa estar desativado em alguns dispositivos</string>
+
+    <!-- câmera -->
+    <string name="cameratitle">GERAL</string>
+    <string name="exposeauxcameras">Exibir câmeras auxiliares</string>
+    <string name="camera2apienable">Forçar ativação da Camera2API HAL3</string>
+    <string name="timestamp">Force Timestamp Source</string>
+    <string name="reboot_camera">Requer uma Reinicialização</string>
+
+    <!-- Debug -->
+    <string name="debugsensor">Debug Sensors</string>
+    <string name="trebleappkill">Fechar TrebleApp</string>
+    <string name="trebleappkill_summary">Para economizar alguns toques</string>
+    <string name="debbugablemode">Definir modo de depuração</string>
+    <string name="debbugablemode_summary">Toggle insecure adb and related</string>
+
+    <!-- doze -->
+    <string name="hardware_gesturedoze">Ativar gesto Handwave</string>
+    <string name="outofpocket_gesturedoze">Ativar gesto out-of-pocket</string>
+    <string name="chopgesture">Ativar gesto ChopChop</string>
+
+    <!-- tela -->
+    <string name="forcefreshrate_display">Forçar taxa de atualização</string>
+    <string name="dynamicfrashrate_display">Taxa de atualização dinâmica</string>
+    <string name="dynamicfrashrate_summary">Ajusta a taxa de atualização com base no conteúdo da tela\nRequer reinicialização</string>
+    <string name="sfgl">Desativar pressão de SF GL</string>
+    <string name="sfgl_summary">Pode melhorar o desempenho de renderização\nRequer reinicialização</string>
+    <string name="sfhwc_disable">Desativar pressão de SF HWC</string>
+    <string name="sfhwc_disablesummary">Pode melhorar o desempenho de renderização</string>
+    <string name="hw_overlay">Desativar sobreposições por hardware</string>
+    <string name="hw_overlaysummary">Consome mais CPU e bateria</string>
+    <string name="forceallowaod">Forçar permissão para Always-On Display</string>
+
+    <!-- aba2 -->
+    <string name="display_tab2">MOTOR DE RENDERIZAÇÃO</string>
+    <string name="renderengine">Backend do motor de renderização</string>
+
+    <!-- Desfoque -->
+    <string name="blureffects">Ativar efeitos de desfoque</string>
+    <string name="blureffects_summary">Pode impactar o desempenho em dispositivos basicos</string>
+
+    <!-- Retroiluminação -->
+    <string name="backlight_displaytitle">\nILUMINAÇÂO</string>
+    <string name="linearbrightness">Definir curva de brilho alternativa</string>
+    <string name="alt_backlight">Forçar escala alternativa de iluminação</string>
+    <string name="summary_altbacklight">Requer desligar/ligar a tela</string>
+    <string name="backlightdisable">Desativar iluminação usando botões físicos</string>
+    <string name="backlight_lowest">Permitir definir brilho no mínimo possível</string>
+
+   <!-- Huawei Strings -->
+    <string name="title_fingerprint">INPRESSÂO DIGTAL</string>
+    <string name="fingerprintgestures">Ativar gestos de impressão digital</string>
+    <string name="headsetforce_switchhuawei">Forçar troca de Fone de Ouvido (Padrão Huawuei)</string>
+    <string name="glovemode_huawei">Ativar modo de luvas para tela sensível ao toque</string>
+    <string name="grapicissueshuawei">Ativar solução alternativa para problemas gráficos</string>
+    <string name="grapicissueshuawei_summary">recomendado se a interface estiver borrada</string>
+    <string name="fastcharge_huawei">Carregamento rápido da Huawei</string>
+
+    <!-- Samsung -->
+    <string name="sterioaudio">Ativar modo de áudio estéreo</string>
+    <string name="reversecharge">Ativar carregamento reverso sem fio (se aplicável)</string>
+    <string name="disable_backmic">Desativar microfone traseiro embutido</string>
+    <string name="disablebackmic_summary">Pode corrigir microfone com defeito em gravações de vídeo</string>
+    <string name="samsungallcam">Ativar acesso a todas as câmeras</string>
+    <string name="samsung1text">Requer fornecedor Q</string>
+    <string name="samsung2text">Normalmente os valores são inteiros entre 1 e 5</string>
+    <string name="samsungflash">Definir intensidade do flash</string>
+    <!-- Soluções alternativas da Samsung -->
+    <string name="samsungtitle3">SOLUÇÕES ALTERNATIVAS</string>
+    <string name="samsung4">Ativar sensores extras</string>
+    <string name="samsung5">Ativar solução para tela esbranquiçada</string>
+    <string name="fingbroken">Ativar solução para tela esbranquiçada</string>
+    <string name="backlightsamsung">Definir escala da luz de fundo/nível máximo de brilho</string>
+
+    <!-- misc -->
+    <string name="misc1">Definir nível de segurança BIOMETRIC_STRONG</string>
+    <string name="msic1_s">Necessário para alguns dispositivos antigos</string>
+    <string name="misc2">Definir Launcher3 na tela de recentes</string>
+    <string name="misc3">Deixar sensores virtuais como reais</string>
+    <string name="msic3_s">Tratar todos os sensores de impressão digital virtuais como reais\nAviso: Isso pode causar bootloop – use com extremo cuidado\nRequer reinicialização</string>
+    <string name="misc4">Desativar WPA3/SAE</string>
+    <string name="misc4_s">Para dispositivos sem suporte</string>
+    <string name="misc5">Desativar camada de armazenamento FUSE</string>
+    <string name="msic5_s">Isso pode aumentar ou diminuir a velocidade do armazenamento\nRequer reinicialização</string>
+
+    <!-- Display -->
+    <string name="displaysamsung_1">Ativar DT2W para Agold/Unihertz</string>
+    <string name="displaysamsung_2">Forçar desativação do estado de suspensão Doze da tela para permitir AOD em alguns dispositivos.</string>
+    <string name="displaysamsung_3">Desativar modo de energia EXPENSIVE_RENDERING</string>
+    <string name="displaysamsung_3s">Corrige spam constante nos logs em alguns dispositivos MTK no modo de energia 6\nRequer reinicialização</string>
+
+    <!-- Securize Samsung -->
+    <string name="securizesamsung_1">Ativar Securize</string>
+    <string name="securizesamsung_1s">Desativar pode corrigir os serviços do Google Play em dispositivos não certificados</string>
+    
 </resources>

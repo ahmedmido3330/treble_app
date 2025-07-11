@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <PreferenceCategory
+        android:title="Xiaomi"
+        android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"

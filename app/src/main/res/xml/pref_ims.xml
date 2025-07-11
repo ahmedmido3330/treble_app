@@ -3,26 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="REQUIREMENTS"
+        android:title="@string/title_ims_requeriments"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom"
-            android:title="Create IMS APN"
+            android:title="@string/ims_apn"
             android:key="key_ims_create_apn" />
         <Preference
             android:layout="@layout/preference_custom"
-            android:title="Download and install IMS APK"
+            android:title="@string/download_ims"
             android:key="key_ims_install_apn" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_request_network"
-            android:title="Request IMS network" />
+            android:title="@string/key_ims" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_force_enable_setting"
-            android:title="Force the presence of 4G Calling setting" />
+            android:title="@string/force_ims_call" />
     </PreferenceCategory>
 
     <PreferenceCategory

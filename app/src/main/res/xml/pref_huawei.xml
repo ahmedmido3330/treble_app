@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="FINGERPRINT"
+        android:title="@string/title_fingerprint"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_huawei_fingerprint_gestures"
-            android:title="Enable Fingerprint gestures" />
+            android:title="@string/fingerprintgestures" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -19,27 +19,27 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_huawei_headset_fix"
-            android:title="Force headset switch (Huawei default)" />
+            android:title="@string/headsetforce_switchhuawei" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="DISPLAY"
+        android:title="@string/oneplus_display"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_huawei_touchscreen_glove_mode"
-            android:title="Enable touchscreen glove mode" />
+            android:title="@string/glovemode_huawei" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_huawei_no_hwcomposer"
-            android:title="Enable graphic issues workaround"
-            android:summary="recommended if ui is blurry"/>
+            android:title="@string/grapicissueshuawei"
+            android:summary="@string/grapicissueshuawei_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="MISCELLANEOUS"
+        android:title="@string/title_misc_asus"
         android:layout="@layout/preference_category_custom">
 	    <ListPreference
             android:layout="@layout/preference_list_custom"
@@ -47,7 +47,7 @@
 		    android:entries="@array/pref_huawei_fast_charge"
 		    android:entryValues="@array/pref_huawei_fast_charge_values"
 		    android:key="key_huawei_fast_charge"
-		    android:title="Huawei fast charge" />
+		    android:title="@string/fastcharge_huawei" />
     </PreferenceCategory>
 
 </PreferenceScreen>
