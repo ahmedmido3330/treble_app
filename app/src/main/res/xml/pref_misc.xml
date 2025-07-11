@@ -64,4 +64,15 @@
             android:summary="Fixes constant log spam on some MTK devices about power mode 6\nRequires reboot" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="SECURIZE"
+        android:layout="@layout/preference_category_custom">
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="true"
+            android:key="key_misc_securize"
+            android:title="Enable Securize"
+            android:summary="Disabling may fix play services on uncertified devices" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
