@@ -255,6 +255,17 @@
 
     <!-- camera -->
     <string name="cameratitle">GENERAL</string>
+    <string name="exposeauxcameras">Expose Aux cameras</string>
+    <string name="camera2apienable">Force Enable Camera2API HAL3</string>
+    <string name="timestamp">Force Timestamp Source</string>
+    <string name="reboot_camera">Requires a reboot</string>
+
+    <!-- Debug -->
+    <string name="debugsensor">Debug Sensors</string>
+    <string name="trebleappkill">Kill TrebleApp</string>
+    <string name="trebleappkill_summary">To save a few taps</string>
+    <string name="debbugablemode">Set debuggable mode</string>
+    <string name="debbugablemode_summary">Toggle insecure adb and related</string>
 
     
 </resources>
