@@ -6,12 +6,12 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="lenovo_double_tap_to_wake"
-            android:title="Enable DT2W" />
+            android:title="@string/dt2w" />
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="lenovo_support_pen"
-            android:title="Enable Support Stylus Pen" />
+            android:title="@string/lenovo_stylus_pen" />
 
 </PreferenceScreen>
