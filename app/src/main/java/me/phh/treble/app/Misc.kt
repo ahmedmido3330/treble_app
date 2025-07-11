@@ -43,10 +43,6 @@ object Misc: EntryStartup {
                 val value = sp.getBoolean(key, false)
                 SystemProperties.set("persist.sys.phh.disable_expensive_rendering_mode", if (value) "1" else "0")
             }
-            MiscSettings.securize -> {
-                val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.securize", if (value) "1" else "0")
-            }
             MiscSettings.unihertzdt2w -> {
                 val value = sp.getBoolean(key, false)
                 try {
