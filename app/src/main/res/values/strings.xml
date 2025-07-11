@@ -219,6 +219,20 @@
 
     <!-- Lenovo -->
     <string name="lenovo_stylus_pen">Enable Support Stylus Pen</string>
-    
+
+    <!-- Lenovo -->
+    <string name="lenovo_stylus_pen">Enable Support Stylus Pen</string>
+
+    <!-- Oneplus -->
+    <string name="oneplus_display">DISPLAY</string>
+    <string name="oneplus_displaymode">Display Mode</string>
+    <string name="oneplus_brightness">High brightness mode</string>
+    <string name="oneplusother">MISCELLANEOUS</string>
+
+    <!-- Oppo -->
+    <string name="touch">TOUCHSCREEN</string>
+    <string name="gamemode_oppo">Enable game mode</string>
+    <string name="dc_diming">Enable DC Diming</string>
+
     
 </resources>
