@@ -211,5 +211,11 @@
     <string name="qcrild_boot">Reiniciar qcrild na inicialização</string>
     <string name="qcrild_boot_summary">Solução alternativa para SMS recebidos\nPode causar falta de áudio em chamadas em alguns dispositivos</string>
     
+        <!-- ims -->
+    <string name="title_ims_requeriments">REQUESITOS</string>
+    <string name="ims_apn">Criar IMS APN</string>
+    <string name="download_ims">Baixar e Instalar IMS APK</string>
+    <string name="key_ims">Solicitar conexão IMS</string>
+    <string name="force_ims_call">Forçar 4g em ligações</string>
     
 </resources>
