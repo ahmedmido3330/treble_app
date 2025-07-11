@@ -4,21 +4,21 @@
 
     <!-- GENERAL -->
     <PreferenceCategory
-        android:title="GENERAL"
+        android:title="@string/title_prefaudio"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ui_two_pane_layout"
-            android:title="Two-Pane Layout"
-            android:summary="Enable tablet Layout. Requires restart apps" />
+            android:title="@string/two_plane_layout"
+            android:summary="@string/two_plane_layout_summary" />
 
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_UI_force_navbar_off"
-            android:title="Force navigation bar disabled"
-            android:summary="Requires a reboot" />
+            android:title="@string/disable_navigation_bar"
+            android:summary="@string/disable_navigation_bar_summary" />
 
         <ListPreference
             android:layout="@layout/preference_list_custom"
@@ -26,12 +26,12 @@
             android:entries="@array/pref_ui_custom_pointer_type"
             android:entryValues="@array/pref_ui_custom_pointer_type_values"
             android:key="key_ui_pointer_type"
-            android:title="Pointer type" />
+            android:title="@string/pointer_type" />
     </PreferenceCategory>
 
     <!-- LOCK SCREEN -->
     <PreferenceCategory
-        android:title="LOCK SCREEN"
+        android:title="@string/lckscreen"
         android:layout="@layout/preference_category_custom">
         <ListPreference
             android:layout="@layout/preference_list_custom"
@@ -39,40 +39,40 @@
             android:entries="@array/pref_ui_fod_color"
             android:entryValues="@array/pref_ui_fod_color_values"
             android:key="key_ui_fod_color"
-            android:title="FOD Icon color" />
+            android:title="@string/fod_icon_color" />
     </PreferenceCategory>
 
     <!-- STATUS BAR -->
     <PreferenceCategory
-        android:title="STATUS BAR"
+        android:title="@string/stats_bar"
         android:layout="@layout/preference_category_custom">
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_ui_sb_padding_top"
-            android:title="Set status bar top padding"
+            android:title="@string/bar_top_padding"
             android:inputType="number"
-            android:hint="Requires SystemUI restart"
-            android:summary="Requires SystemUI restart" />
+            android:hint="@string/sysui_restart"
+            android:summary="@string/sysui_restart" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_ui_sb_padding_start"
-            android:title="Set status bar start padding"
+            android:title="@string/bar_start_padding"
             android:inputType="number"
-            android:hint="Requires SystemUI restart"
-            android:summary="Requires SystemUI restart" />
+            android:hint="@string/sysui_restart"
+            android:summary="@string/sysui_restart" />
 
         <EditTextPreference
             android:layout="@layout/preference_edittext_custom"
             android:key="key_ui_sb_padding_end"
-            android:title="Set status bar end padding"
+            android:title="@string/bar_end_padding"
             android:inputType="number"
-            android:hint="Requires SystemUI restart"
-            android:summary="Requires SystemUI restart" />
+            android:hint="@string/sysui_restart"
+            android:summary="@string/sysui_restart" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="STYLES"
+        android:title="@string/styles_title"
         android:layout="@layout/preference_category_custom">
         <ListPreference
             android:layout="@layout/preference_list_custom"
@@ -80,39 +80,39 @@
             android:entries="@array/pref_custom_accent_color"
             android:entryValues="@array/pref_custom_accent_color_values"
             android:key="key_custom_accent_color"
-            android:title="Accent color" />
+            android:title="@string/accent_color" />
         <ListPreference
             android:layout="@layout/preference_list_custom"
             android:defaultValue=""
             android:entries="@array/pref_custom_icon_shape"
             android:entryValues="@array/pref_custom_icon_shape_values"
             android:key="key_custom_icon_shape"
-            android:title="Icon shape" />
+            android:title="@string/icon_shape" />
         <ListPreference
             android:layout="@layout/preference_list_custom"
             android:defaultValue=""
             android:entries="@array/pref_custom_icon_pack"
             android:entryValues="@array/pref_custom_icon_pack_values"
             android:key="key_custom_icon_pack"
-            android:title="Icon pack" />
+            android:title="@string/icon_pack" />
         <ListPreference
             android:layout="@layout/preference_list_custom"
             android:defaultValue=""
             android:entries="@array/pref_custom_font_family"
             android:entryValues="@array/pref_custom_font_family_values"
             android:key="key_custom_font_family"
-            android:title="Font family" />
+            android:title="@string/font_family" />
         </PreferenceCategory>
 
     <!-- TOOLS -->
     <PreferenceCategory
-        android:title="TOOLS"
+        android:title="@string/tools_title"
         android:layout="@layout/preference_category_custom">
         <Preference
             android:layout="@layout/preference_custom"
             android:key="key_ui_restart_systemui"
-            android:title="Restart SystemUI"
-            android:summary="Requires root access" />
+            android:title="@string/restart_sysui_tools_option"
+            android:summary="@string/root_accesses" />
     </PreferenceCategory>
 
 </PreferenceScreen>
