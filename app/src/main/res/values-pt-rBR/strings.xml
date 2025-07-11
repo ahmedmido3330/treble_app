@@ -188,4 +188,8 @@
     <string name="sysui_restart">Precisa reiniciar o SystemUI</string>
     <string name="root_accesses">Precisa de accesso ao root</string>    
 
+    <!-- vsmart -->
+    <string name="tap_to_wake">Ativar toque duplo para ligar a tela</string>
+
+    
 </resources>
