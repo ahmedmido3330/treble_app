@@ -180,5 +180,8 @@
 <!-- Xiaomi -->
     <string name="dt2w">Enable DT2W</string>
 
-
+<!-- Sys UI -->
+    <string name="sysui_restart">Requires SystemUI restart</string>
+    <string name="root_accesses">Requieres root access</string>
+    
 </resources>
