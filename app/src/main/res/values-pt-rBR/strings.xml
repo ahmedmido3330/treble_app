@@ -326,5 +326,26 @@
     <string name="samsung5">Ativar solução para tela esbranquiçada</string>
     <string name="fingbroken">Ativar solução para tela esbranquiçada</string>
     <string name="backlightsamsung">Definir escala da luz de fundo/nível máximo de brilho</string>
+
+    <!-- misc -->
+    <string name="misc1">Definir nível de segurança BIOMETRIC_STRONG</string>
+    <string name="msic1_s">Necessário para alguns dispositivos antigos</string>
+    <string name="misc2">Definir Launcher3 na tela de recentes</string>
+    <string name="misc3">Deixar sensores virtuais como reais</string>
+    <string name="msic3_s">Tratar todos os sensores de impressão digital virtuais como reais\nAviso: Isso pode causar bootloop – use com extremo cuidado\nRequer reinicialização</string>
+    <string name="misc4">Desativar WPA3/SAE</string>
+    <string name="misc4_s">Para dispositivos sem suporte</string>
+    <string name="misc5">Desativar camada de armazenamento FUSE</string>
+    <string name="msic5_s">Isso pode aumentar ou diminuir a velocidade do armazenamento\nRequer reinicialização</string>
+
+    <!-- Display -->
+    <string name="displaysamsung_1">Ativar DT2W para Agold/Unihertz</string>
+    <string name="displaysamsung_2">Forçar desativação do estado de suspensão Doze da tela para permitir AOD em alguns dispositivos.</string>
+    <string name="displaysamsung_3">Desativar modo de energia EXPENSIVE_RENDERING</string>
+    <string name="displaysamsung_3s">Corrige spam constante nos logs em alguns dispositivos MTK no modo de energia 6\nRequer reinicialização</string>
+
+    <!-- Securize Samsung -->
+    <string name="securizesamsung_1">Ativar Securize</string>
+    <string name="securizesamsung_1s">Desativar pode corrigir os serviços do Google Play em dispositivos não certificados</string>
     
 </resources>
