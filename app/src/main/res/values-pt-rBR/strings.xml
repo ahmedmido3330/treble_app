@@ -195,5 +195,21 @@
     <string name="display_title">TELA</string>
     <string name="other_title">OUTROS</string>
     <string name="otg_usb">Ativar USB OTG</string>
+
+    <!-- qualcoom -->
+    <string name="alternative_camera_profile">Usar perfil de câmera alternativo</string>
+    <string name="soundvolume">Desativar efeitos de som</string>
+    <string name="soundvolume_summary">Corrigir distorção de áudio</string>
+    <!-- qualcomm VoIP -->
+    <string name="sterio_voip">Desativar suporte a estéreo no VoIP</string>
+    <string name="sterio_voip_summary">Pode corrigir áudio agudo. Requer reinicialização</string>
+    <string name="voip_directoutput">Definir VoIP como saída direta</string>
+    <string name="voip_directoutput_summary">Deve corrigir áudio agudo. Requer reinicialização</string>
+
+    <!-- qualcomm rede móvel -->
+    <string name="mobile_network_title">REDE MÓVEL</string>
+    <string name="qcrild_boot">Reiniciar qcrild na inicialização</string>
+    <string name="qcrild_boot_summary">Solução alternativa para SMS recebidos\nPode causar falta de áudio em chamadas em alguns dispositivos</string>
+    
     
 </resources>
