@@ -3,65 +3,59 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="GENERAL"
+        android:title="@string/cameratitle"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_biometricstrong"
-            android:title="Set BIOMETRIC_STRONG security level"
-            android:summaryOn="Required by some old broken devices" />
+            android:title="@string/misc1"
+            android:summaryOn="@string/msic1_s" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="0"
             android:key="key_misc_launcher3"
-            android:title="Set Launcher3 as recents provider"
-            android:summary="Requires a reboot" />
+            android:title="@string/misc2"
+            android:summary="@string/disable_navigation_bar_summary" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_treat_virtual_sensors_as_real"
-            android:title="Treat virtual sensors as real"
-            android:summary="Treat all virtual fingerprint sensors as real\nWarning: This can cause bootloops - use with extreme care\nRequires a reboot" />
+            android:title="@string/misc3"
+            android:summary="@string/msic3_s" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_disable_sae_upgrade"
-            android:title="Disable WPA3/SAE"
-            android:summary="For unsupported devices" />
+            android:title="@string/misc4"
+            android:summary="@string/misc4_s" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_storage_fuse"
-            android:title="Disable FUSE storage layer"
-            android:summary="This can (de/in)crease storage speed\nRequires a reboot" />
+            android:title="@string/misc5"
+            android:summary="@string/msic5_s" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="DISPLAY"
+        android:title="@string/oneplus_display"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_unihertz_dt2w"
-            android:title="Enable Agold/Unihertz DT2W" />
-        <SwitchPreference
-            android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
-            android:key="key_misc_dt2w"
-            android:title="Double tap to wake"
-            android:summary="Unlikely to work for you" />
+            android:title="@string/displaysamsung_1" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_disable_display_doze_suspend"
-            android:title="Force disable display Doze Suspend state to allow AoD on some devices." />
+            android:title="@string/displaysamsung_2" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_disable_expensive_rendering_mode"
-            android:title="Disable EXPENSIVE_RENDERING power mode"
-            android:summary="Fixes constant log spam on some MTK devices about power mode 6\nRequires reboot" />
+            android:title="@string/displaysamsung_3"
+            android:summary="@string/displaysamsung_3s" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -71,8 +65,8 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="true"
             android:key="key_misc_securize"
-            android:title="Enable Securize"
-            android:summary="Disabling may fix play services on uncertified devices" />
+            android:title="@string/securizesamsung_1"
+            android:summary="@string/securizesamsung_1s" />
     </PreferenceCategory>
 
 </PreferenceScreen>
