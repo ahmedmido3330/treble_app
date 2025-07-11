@@ -301,5 +301,15 @@
     <string name="summary_altbacklight">Requer desligar/ligar a tela</string>
     <string name="backlightdisable">Desativar iluminação usando botões físicos</string>
     <string name="backlight_lowest">Permitir definir brilho no mínimo possível</string>
+
+   <!-- Huawei Strings -->
+    <string name="title_fingerprint">INPRESSÂO DIGTAL</string>
+    <string name="fingerprintgestures">Ativar gestos de impressão digital</string>
+    <string name="headsetforce_switchhuawei">Forçar troca de Fone de Ouvido (Padrão Huawuei)</string>
+    <string name="glovemode_huawei">Ativar modo de luvas para tela sensível ao toque</string>
+    <string name="grapicissueshuawei">Ativar solução alternativa para problemas gráficos</string>
+    <string name="grapicissueshuawei_summary">recomendado se a interface estiver borrada</string>
+    <string name="fastcharge_huawei">Carregamento rápido da Huawei</string>
+
     
 </resources>
