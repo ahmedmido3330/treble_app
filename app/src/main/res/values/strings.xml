@@ -101,7 +101,7 @@
     <!-- Summary -->
     <string name="disable_headset_detect_sumarry">Standard fix for wired headphones recognition</string>
     <string name="disable_audio_effects_sumarry">Disable all of thems on vendor side</string>
-    <string name="disable_fast_audio_sumarry">Should fix cracked/broken/stutter audio on devices which can't handle it"</string>
+    <string name="disable_fast_audio_sumarry">Should fix cracked/broken/stutter audio on devices which can't handle it</string>
     <string name="voicecall_route_sumarry">May fix echo or non-working audio on calls\nRequires a reboot</string>
     <!-- Bluetooth -->
     <string name="wide_bt_hal">Use System Wide BT HAL</string>

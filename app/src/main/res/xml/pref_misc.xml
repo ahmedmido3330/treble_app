@@ -48,6 +48,12 @@
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
+            android:key="key_misc_dt2w"
+            android:title="Double tap to wake"
+            android:summary="Unlikely to work for you" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
             android:key="key_misc_disable_display_doze_suspend"
             android:title="Force disable display Doze Suspend state to allow AoD on some devices." />
         <SwitchPreference
