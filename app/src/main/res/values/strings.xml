@@ -101,7 +101,7 @@
     <!-- Summary -->
     <string name="disable_headset_detect_sumarry">Standard fix for wired headphones recognition</string>
     <string name="disable_audio_effects_sumarry">Disable all of thems on vendor side</string>
-    <string name="disable_fast_audio_sumarry">Should fix cracked/broken/stutter audio on devices which can't handle it</string>
+    <string name="disable_fast_audio_sumarry">Should fix cracked/broken/stutter audio on devices which can't handle it"</string>
     <string name="voicecall_route_sumarry">May fix echo or non-working audio on calls\nRequires a reboot</string>
     <!-- Bluetooth -->
     <string name="wide_bt_hal">Use System Wide BT HAL</string>
@@ -269,6 +269,34 @@
     <string name="hardware_gesturedoze">Enable Handwave gesture</string>
     <string name="outofpocket_gesturedoze">Enable out-of-pocket gesture</string>
     <string name="chopgesture">Enable Chop Chop gesture</string>
+    
+    <!-- display -->
+    <string name="forcefreshrate_display">Force Refresh rate</string>
+    <string name="dynamicfrashrate_display">Dynamic Refresh rate</string>
+    <string name="dynamicfrashrate_summary">Adjust refresh rate based on screen content\nRequires reboot</string>
+    <string name="sfgl">Disable SF GL backpressure</string>
+    <string name="sfgl_summary">Might improve rendering performance\nRequires reboot</string>
+    <string name="sfhwc_disable">Disable SF HWC backpressure</string>
+    <string name="sfhwc_disablesummary">Might improve rendering performance</string>
+    <string name="hw_overlay">Disable HW overlays</string>
+    <string name="hw_overlaysummary">Eats more CPU and battery</string>
+    <string name="forceallowaod">Force allow Always-On Display</string>
+
+    <!-- tab2 -->
+    <string name="display_tab2">RENDER ENGINE</string>
+    <string name="renderengine">Render engine backend</string>
+
+    <!-- Blur -->
+    <string name="blureffects">Enable blur effects</string>
+    <string name="blureffects_summary">May impact performance on low-end devices</string>
+
+    <!-- Backlight -->
+    <string name="backlight_displaytitle">\nBACKLIGHT</string>
+    <string name="linearbrightness">Set alternative brightness curve</string>
+    <string name="alt_backlight">Force alternative backlight scale</string>
+    <string name="summary_altbacklight">Requires turn off/on screen</string>
+    <string name="backlightdisable">Disable backlight of hardware buttons</string>
+    <string name="backlight_lowest">Allows setting brightness to the lowest possible</string>
 
     
 </resources>
