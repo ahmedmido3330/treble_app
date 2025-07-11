@@ -35,9 +35,6 @@
     <string name="update_props">Updating Props</string>
     <string name="props_summary">Will bash from an URL, continue?</string>
     <string name="restart_system_ui">Restarting System UI</string>
-    <string name="reset_simcount">Reset SIM Count</string>
-    <string name="reset_simcount_summary">Requires a reboot, continue?</string>
-
 
 
     <!-- Categorias -->
@@ -260,5 +257,16 @@
 
     <!-- câmera -->
     <string name="cameratitle">GERAL</string>
+    <string name="exposeauxcameras">Exibir câmeras auxiliares</string>
+    <string name="camera2apienable">Forçar ativação da Camera2API HAL3</string>
+    <string name="timestamp">Force Timestamp Source</string>
+    <string name="reboot_camera">Requer uma Reinicialização</string>
+
+    <!-- Debug -->
+    <string name="debugsensor">Debug Sensors</string>
+    <string name="trebleappkill">Fechar TrebleApp</string>
+    <string name="trebleappkill_summary">Para economizar alguns toques</string>
+    <string name="debbugablemode">Definir modo de depuração</string>
+    <string name="debbugablemode_summary">Toggle insecure adb and related</string>
     
 </resources>
