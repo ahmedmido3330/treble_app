@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/touch_oppo"
+        android:title="@string/touch"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
