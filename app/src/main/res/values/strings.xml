@@ -120,7 +120,31 @@
     <string name="unssuported_le_features_bluetooth">Set unsupported Bluetooth LE features</string>
     <string name="unssuported_bluetooth_stats">Set unsupported Bluetooth states</string>
 
+<!-- Pref UI -->
+    <string name="two_plane_layout">Two-Pane Layout</string>
+    <string name="two_plane_layout_summary">Enable tablet Layout. Requires restart apps</string>
+    <string name="disable_navigation_bar">Force navigation bar disabled</string>
+    <string name="disable_navigation_bar_summary">Requires a reboot</string>
+    <string name="pointer_type">Pointer type</string>
+    <!-- LockScreen -->
+    <string name="lckscreen">LOCK SCREEN</string>
+    <string name="fod_icon_color">FOD Icon Color</string>
+    <!-- Status Bar -->
+    <string name="stats_bar">STATUS BAR</string>
+    <string name="bar_top_padding">Set status bar top padding</string>
+    <string name="bar_start_padding">Set status bar start padding</string>
+    <string name="bar_end_padding">Set status bar end padding</string>
+    <!-- STYLES -->
+    <string name="styles_title">STYLES</string>
+    <string name="accent_color">Accent color</string>
+    <string name="icon_shape">Icon shape</string>
+    <string name="icon_pack">Icon pack</string>
+    <string name="font_family">Font family</string>
+    <!-- TOOLS -->
+    <string name="tools_title">TOOLS</string>
+    <string name="restart_sysui_tools_option">Restart SystemUI</string>
 
+    
 <!--     Asus -->
     <!-- Display -->
     <string name="title_display_asus">DISPLAY</string>
