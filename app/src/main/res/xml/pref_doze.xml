@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="GENERAL"
+        android:title="@string/cameratitle"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_doze_handwave"
-            android:title="Enable Handwave gesture" />
+            android:title="@string/hardware_gesturedoze" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_doze_pocket"
-            android:title="Enable out-of-pocket gesture" />
+            android:title="@string/outofpocket_gesturedoze" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -25,7 +25,7 @@
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
             android:key="key_doze_chopchop"
-            android:title="Enable Chop Chop gesture" />
+            android:title="@string/chopgesture" />
     </PreferenceCategory>
 
 </PreferenceScreen>
