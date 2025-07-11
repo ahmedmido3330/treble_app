@@ -73,6 +73,12 @@
             android:key="key_misc_securize"
             android:title="@string/securizesamsung_1"
             android:summary="@string/securizesamsung_1s" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="true"
+            android:key="key_misc_secure_adb"
+            android:title="Secure adb"
+            android:summary="Computer requires approval" />
     </PreferenceCategory>
 
 </PreferenceScreen>
