@@ -298,5 +298,14 @@
     <string name="backlightdisable">Disable backlight of hardware buttons</string>
     <string name="backlight_lowest">Allows setting brightness to the lowest possible</string>
 
+   <!-- Huawei Strings -->
+    <string name="title_fingerprint">FINGERPRINT</string>
+    <string name="fingerprintgestures">Enable Fingerprint gestures</string>
+    <string name="headsetforce_switchhuawei">Force headset switch (Huawei default)</string>
+    <string name="glovemode_huawei">Enable touchscreen glove mode</string>
+    <string name="grapicissueshuawei">Enable graphic issues workaround</string>
+    <string name="grapicissueshuawei_summary">recommended if ui is blurry</string>
+    <string name="fastcharge_huawei">Huawei Fast Charge</string>
+    
     
 </resources>
