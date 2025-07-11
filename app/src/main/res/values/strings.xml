@@ -216,6 +216,9 @@
     <string name="title_ims2">WORKAROUND ISSUES</string>
     <string name="ims2_title_call_incoming">Allow binder thread on incoming calls</string>
     <string name="ims2_summary">Workaround for 4G calling\nRequires a reboot</string>
+
+    <!-- Lenovo -->
+    <string name="lenovo_stylus_pen">Enable Support Stylus Pen</string>
     
     
 </resources>
