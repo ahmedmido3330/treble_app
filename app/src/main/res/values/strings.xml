@@ -323,5 +323,25 @@
     <string name="fingbroken">Enable workaround for white-ish screen</string>
     <string name="backlightsamsung">Set backlight scale/max backlight level</string>
 
+    <!-- misc -->
+    <string name="misc1">Set BIOMETRIC_STRONG security level</string>
+    <string name="msic1_s">Required by some old broken devices</string>
+    <string name="misc2">Set Launcher3 as recents provider</string>
+    <string name="misc3">Treat virtual sensors as real</string>
+    <string name="msic3_s">Treat all virtual fingerprint sensors as real\nWarning: This can cause bootloops - use with extreme care\nRequires a reboot</string>
+    <string name="misc4">Disable WPA3/SAE</string>
+    <string name="misc4_s">For unsupported devices</string>
+    <string name="misc5">Disable FUSE storage layer</string>
+    <string name="msic5_s">This can (de/in)crease storage speed\nRequires a reboot</string>
+
+    <!-- Display -->
+    <string name="displaysamsung_1">Enable Agold/Unihertz DT2W</string>
+    <string name="displaysamsung_2">Force disable display Doze Suspend state to allow AoD on some devices.</string>
+    <string name="displaysamsung_3">Disable EXPENSIVE_RENDERING power mode</string>
+    <string name="displaysamsung_3s">Fixes constant log spam on some MTK devices about power mode 6\nRequires reboot</string>
+    <!-- Securize Samsung -->
+    <string name="securizesamsung_1">Enable Securize</string>
+    <string name="securizesamsung_1s">Disabling may fix play services on uncertified devices</string>
+    
     
 </resources>
