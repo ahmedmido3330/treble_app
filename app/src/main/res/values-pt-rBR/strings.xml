@@ -311,5 +311,20 @@
     <string name="grapicissueshuawei_summary">recomendado se a interface estiver borrada</string>
     <string name="fastcharge_huawei">Carregamento rápido da Huawei</string>
 
+    <!-- Samsung -->
+    <string name="sterioaudio">Ativar modo de áudio estéreo</string>
+    <string name="reversecharge">Ativar carregamento reverso sem fio (se aplicável)</string>
+    <string name="disable_backmic">Desativar microfone traseiro embutido</string>
+    <string name="disablebackmic_summary">Pode corrigir microfone com defeito em gravações de vídeo</string>
+    <string name="samsungallcam">Ativar acesso a todas as câmeras</string>
+    <string name="samsung1text">Requer fornecedor Q</string>
+    <string name="samsung2text">Normalmente os valores são inteiros entre 1 e 5</string>
+    <string name="samsungflash">Definir intensidade do flash</string>
+    <!-- Soluções alternativas da Samsung -->
+    <string name="samsungtitle3">SOLUÇÕES ALTERNATIVAS</string>
+    <string name="samsung4">Ativar sensores extras</string>
+    <string name="samsung5">Ativar solução para tela esbranquiçada</string>
+    <string name="fingbroken">Ativar solução para tela esbranquiçada</string>
+    <string name="backlightsamsung">Definir escala da luz de fundo/nível máximo de brilho</string>
     
 </resources>
