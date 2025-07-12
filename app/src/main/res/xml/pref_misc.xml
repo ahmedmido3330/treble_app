@@ -60,8 +60,8 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_dt2w"
-            android:title="Double tap to wake"
-            android:summary="Unlikely to work for you" />
+            android:title="@string/key_misc_dt2w"
+            android:summary="@string/key_misc_dt2w_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -77,8 +77,8 @@
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_misc_secure_adb"
-            android:title="Secure adb"
-            android:summary="Computer requires approval" />
+            android:title="@string/key_misc_secure_adb"
+            android:summary="@string/key_misc_secure_adb_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

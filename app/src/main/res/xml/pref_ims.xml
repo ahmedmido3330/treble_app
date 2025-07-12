@@ -26,14 +26,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="WORKAROUND ISSUES"
+        android:title="@string/title_ims2"
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
             android:key="key_ims_allow_binder_thread_on_incoming_calls"
-            android:title="Allow binder thread on incoming calls"
-            android:summary="Workaround for 4G calling\nRequires a reboot" />
+            android:title="@string/ims2_title_call_incoming"
+            android:summary="@string/ims2_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

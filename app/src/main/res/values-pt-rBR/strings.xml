@@ -91,8 +91,8 @@
     <string name="summary_debug">Depurar sensores</string>
 
 <!-- Pref Audio -->
-    <!-- Geral-->
-    <string name="title_prefaudio">Geral</string>
+    <!-- GERAL-->
+    <string name="title_prefaudio">GERAL</string>
     <string name="alt_audio_police">Use o áudio police alternativo</string>
     <string name="alt_headset_detect_title">Use o método alternativo para a detecção dos fones de ouvido</string>
     <string name="disable_audio_effects_title">Desativar os efeitos de áudio</string>
@@ -170,7 +170,7 @@
     <string name="title_general_mediatek">GERAL</string>
     <string name="title_telephony_mediatek">TELEFONIA</string>
 
-    <!-- Geral -->
+    <!-- GERAL -->
     <string name="title_touch_hint_rotate">Dica de desempenho de rotação em vez de toque</string>
     <string name="summary_touch_hint_rotate">Para dispositivos Mediatek</string>
 
@@ -211,7 +211,7 @@
         <!-- ims -->
     <string name="title_ims_requeriments">REQUESITOS</string>
     <string name="ims_apn">Criar IMS APN</string>
-    <string name="download_ims">Baixar e Instalar IMS APK</string>
+    <string name="download_ims">Instalar o APK IMS para MEDIATEK R+ vendor</string>
     <string name="key_ims">Solicitar conexão IMS</string>
     <string name="force_ims_call">Forçar 4g em ligações</string>
     <!-- Solução Alternativa -->
@@ -347,5 +347,54 @@
     <!-- Securize Samsung -->
     <string name="securizesamsung_1">Ativar Securize</string>
     <string name="securizesamsung_1s">Desativar pode corrigir os serviços do Google Play em dispositivos não certificados</string>
-    
+<!-- MISC -->
+    <string name="key_misc_secure_adb">Adb seguro</string>
+    <string name="key_misc_secure_adb_summary">O computador requer aprovação</string>
+
+    <string name="key_misc_dt2w">Toque duas vezes para ativar</string>
+    <string name="key_misc_dt2w_summary">Tente e Veja</string>
+
+<!--     NUBIA -->
+    <!-- Categorias -->
+    <string name="nubia_category_touchscreen">TOQUE</string>
+    <string name="nubia_category_misc">DIVERSOS</string>
+    <string name="nubia_category_leds">LEDS</string>
+    <string name="nubia_category_boosts">DESEMPENHO</string>
+
+    <!-- Toque -->
+    <string name="nubia_double_tap_to_wake">Ativar Toque Duplo para Despertar</string>
+    <string name="nubia_double_tap_to_wake_summary">Toque duas vezes para ligar a tela</string>
+
+    <string name="nubia_high_touch_sample_rate">Ativar alta taxa de amostragem</string>
+    <string name="nubia_high_touch_sample_rate_summary">Consome mais bateria</string>
+
+    <string name="nubia_high_touch_sensitivity">Ativar alta sensibilidade ao toque</string>
+    <string name="nubia_high_touch_sensitivity_summary">Útil com luvas</string>
+
+    <!-- Diversos -->
+    <string name="nubia_touchscreen_game_mode">Ativar modo jogo</string>
+    <string name="nubia_touchscreen_game_mode_summary_on">Ventoinha automática desativada</string>
+
+    <string name="nubia_shoulder_btn">Ativar botões de ombro</string>
+    <string name="nubia_shoulder_btn_summary">Gatilhos laterais</string>
+
+    <string name="nubia_bypass_charger">Ativar carregamento direto</string>
+    <string name="nubia_bypass_charger_summary_off">Carregador → Bateria → Celular</string>
+    <string name="nubia_bypass_charger_summary_on">Carregador → Celular</string>
+
+    <string name="nubia_fan_speed">Velocidade da ventoinha</string>
+    <string name="nubia_fan_speed_summary">Suporte a carregamento inteligente</string>
+
+    <!-- LEDs -->
+    <string name="nubia_redmagic_logo_breath">Fazer logotipo Redmagic pulsar</string>
+    <string name="nubia_redmagic_led">RGB REDMAGIC</string>
+
+    <!-- Desempenho -->
+    <string name="nubia_boost_cpu">Melhorar CPU</string>
+    <string name="nubia_boost_cache">Melhorar caches</string>
+    <string name="nubia_boost_gpu">Melhorar GPU</string>
+    <string name="nubia_boost_ufs">Melhorar UFS</string>
+    <string name="nubia_boost_ufs_summary_on">Aumenta velocidade de leitura/gravação</string>
+
+
 </resources>

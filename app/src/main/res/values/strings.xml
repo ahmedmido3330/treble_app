@@ -207,7 +207,7 @@
     <!-- ims -->
     <string name="title_ims_requeriments">REQUERIMENTS</string>
     <string name="ims_apn">Create IMS APN</string>
-    <string name="download_ims">Download and install IMS APK</string>
+    <string name="download_ims">install IMS APK for MEDIATEK R+ vendor</string>
     <string name="key_ims">Request IMS network</string>
     <string name="force_ims_call">Force the presence of 4G Calling setting</string>
     <!-- Workaroud -->
@@ -342,6 +342,53 @@
     <!-- Securize Samsung -->
     <string name="securizesamsung_1">Enable Securize</string>
     <string name="securizesamsung_1s">Disabling may fix play services on uncertified devices</string>
-    
+<!-- MISC -->
+    <string name="key_misc_secure_adb">Secure adb</string>
+    <string name="key_misc_secure_adb_summary">Computer requires approval</string>
+
+    <string name="key_misc_dt2w">Double tap to wake</string>
+    <string name="key_misc_dt2w_summary">Try and See</string>
+
+<!--     NUBIA -->
+    <!-- Categories -->
+    <string name="nubia_category_touchscreen">TOUCHSCREEN</string>
+    <string name="nubia_category_misc">MISCELLANEOUS</string>
+    <string name="nubia_category_leds">LEDS</string>
+    <string name="nubia_category_boosts">BOOSTS</string>
+
+    <!-- Touchscreen -->
+    <string name="nubia_double_tap_to_wake">Enable DT2W</string>
+    <string name="nubia_double_tap_to_wake_summary">Double tap to wake up</string>
+
+    <string name="nubia_high_touch_sample_rate">Enable high touch sample rate</string>
+    <string name="nubia_high_touch_sample_rate_summary">Drains more battery</string>
+
+    <string name="nubia_high_touch_sensitivity">Enable high touch sensitivity</string>
+    <string name="nubia_high_touch_sensitivity_summary">Useful while wearing gloves</string>
+
+    <!-- Miscellaneous -->
+    <string name="nubia_touchscreen_game_mode">Enable game mode</string>
+    <string name="nubia_touchscreen_game_mode_summary_on">Auto stop fan is disabled</string>
+
+    <string name="nubia_shoulder_btn">Enable shoulder buttons</string>
+    <string name="nubia_shoulder_btn_summary">Shoulder buttons/triggers</string>
+
+    <string name="nubia_bypass_charger">Enable bypass charger</string>
+    <string name="nubia_bypass_charger_summary_off">Charger → Battery → Phone</string>
+    <string name="nubia_bypass_charger_summary_on">Charger → Phone</string>
+
+    <string name="nubia_fan_speed">FAN speed</string>
+    <string name="nubia_fan_speed_summary">Support smart charging</string>
+
+    <!-- LEDs -->
+    <string name="nubia_redmagic_logo_breath">Make Redmagic logo breathe</string>
+    <string name="nubia_redmagic_led">REDMAGIC RGB</string>
+
+    <!-- Boosts -->
+    <string name="nubia_boost_cpu">Boost CPU</string>
+    <string name="nubia_boost_cache">Boost caches</string>
+    <string name="nubia_boost_gpu">Boost GPU</string>
+    <string name="nubia_boost_ufs">Boost UFS</string>
+    <string name="nubia_boost_ufs_summary_on">Increase Read/Write speed</string>
     
 </resources>
