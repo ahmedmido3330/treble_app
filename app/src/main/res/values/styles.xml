@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="TextAppearance.CustomTitle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">@font/google_sans_flex_regular</item>
+        <item name="fontFamily">@font/inter</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -10,7 +10,7 @@
     </style>
 
     <style name="TextAppearance.CustomSummary" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/google_sans_flex_regular</item>
+        <item name="fontFamily">@font/inter</item>
         <item name="android:textSize">14sp</item>
     </style>
 </resources>

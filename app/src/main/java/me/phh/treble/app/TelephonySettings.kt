@@ -12,6 +12,10 @@ import android.view.View
 import android.widget.ListView
 import android.widget.Toast
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object TelephonySettings : Settings {
     val mobileSignal = "key_telephony_mobile_signal"
     val restartRil = "key_telephony_restart_ril"
@@ -64,13 +68,12 @@ class TelephonySettingsFragment : PreferenceFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Apply consistent visual settings
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 

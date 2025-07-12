@@ -9,6 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object AudioSettings : Settings {
     val headsetDevinput = "key_audio_headset_devinput"
     val disableAudioEffects = "key_audio_disable_audio_effects"
@@ -68,13 +72,12 @@ class AudioSettingsFragment : PreferenceFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Aplica as mesmas configurações visuais do AudioEffectsFragment
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }

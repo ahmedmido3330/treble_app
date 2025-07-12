@@ -9,6 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object OnePlusSettings : Settings {
     val displayModeKey = "key_oneplus_display_mode"
     val highBrightnessModeKey = "key_oneplus_display_high_brightness"
@@ -43,13 +47,12 @@ class OnePlusSettingsFragment : PreferenceFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Apply same visual settings as AudioEffectsFragment
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }

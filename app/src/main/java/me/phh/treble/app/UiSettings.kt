@@ -13,6 +13,10 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.preference.PreferenceManager
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object UiSettings : Settings {
     val twoPaneLayout = "key_ui_two_pane_layout"
     val forceNavbarOff = "key_UI_force_navbar_off"
@@ -112,8 +116,8 @@ class UiSettingsFragment : PreferenceFragment() {
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 

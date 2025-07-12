@@ -10,6 +10,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object DisplaySettings : Settings {
     val displayFps = "key_display_display_fps"
     val dynamicFps = "key_display_dynamic_fps"
@@ -62,8 +66,8 @@ class DisplaySettingsFragment : PreferenceFragment() {
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }

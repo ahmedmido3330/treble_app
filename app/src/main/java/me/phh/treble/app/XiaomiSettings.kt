@@ -9,6 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object XiaomiSettings : Settings {
     val dt2w = "xiaomi_double_tap_to_wake"
     val fodColor = "xiaomi_fod_color"  // Example additional preference
@@ -43,13 +47,12 @@ class XiaomiSettingsFragment : PreferenceFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Apply consistent visual settings
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }

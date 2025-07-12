@@ -14,6 +14,11 @@ import android.view.View
 import android.widget.ListView
 import java.util.UUID
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
+
 class AudioEffectsFragment : PreferenceFragment() {
     val effects = AudioEffect.queryEffects()
 
@@ -55,12 +60,13 @@ class AudioEffectsFragment : PreferenceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }

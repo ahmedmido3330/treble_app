@@ -20,6 +20,10 @@ import android.widget.Toast
 import dalvik.system.PathClassLoader
 import java.io.FileInputStream
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
 object ImsSettings : Settings {
     val requestNetwork = "key_ims_request_network"
     val createApn = "key_ims_create_apn"
@@ -100,6 +104,7 @@ class ImsSettingsFragment : PreferenceFragment() {
         Log.d("PHH", "IMS settings loaded successfully")
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -107,8 +112,8 @@ class ImsSettingsFragment : PreferenceFragment() {
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 

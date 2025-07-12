@@ -1,13 +1,15 @@
 package me.phh.treble.app
 
-import android.app.Fragment
-import android.content.Context
 import android.os.Bundle
-import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.util.Log
 import android.view.View
 import android.widget.ListView
+import android.content.Context
+
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 
 object MediatekSettings : Settings {
     val mtkTouchHintIsRotate = "key_mtk_mediatek_touch_hint_rotate"
@@ -34,13 +36,12 @@ class MediatekSettingsFragment : PreferenceFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Aplica as mesmas configurações visuais do AudioEffectsFragment
         val listView = view.findViewById<ListView>(android.R.id.list)
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = true
-            setPadding(32, paddingTop, 32, paddingBottom)
+            clipToPadding = false // importante
+            setPadding(32, 64, 32, 32) // padding fixo mais seguro
         }
     }
 }
