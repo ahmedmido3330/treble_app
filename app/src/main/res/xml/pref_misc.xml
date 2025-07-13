@@ -7,7 +7,7 @@
         android:layout="@layout/preference_category_custom">
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="key_misc_biometricstrong"
             android:title="@string/misc1"
             android:summaryOn="@string/msic1_s" />
@@ -19,7 +19,7 @@
             android:summary="@string/disable_navigation_bar_summary" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="key_misc_treat_virtual_sensors_as_real"
             android:title="@string/misc3"
             android:summary="@string/msic3_s" />
@@ -58,7 +58,7 @@
             android:summary="@string/displaysamsung_3s" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="key_misc_dt2w"
             android:title="@string/key_misc_dt2w"
             android:summary="@string/key_misc_dt2w_summary" />
