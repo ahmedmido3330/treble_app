@@ -29,12 +29,12 @@ object Xiaomi : EntryStartup {
 
     override fun startup(ctxt: Context) {
         if (!XiaomiSettings.enabled(ctxt)) return
-        Log.d("PHH", "Starting Xiaomi service")
+            Log.d("PHH", "Starting Xiaomi service")
 
-        val sp = PreferenceManager.getDefaultSharedPreferences(ctxt)
-        sp.registerOnSharedPreferenceChangeListener(spListener)
+            val sp = PreferenceManager.getDefaultSharedPreferences(ctxt)
+            sp.registerOnSharedPreferenceChangeListener(spListener)
 
-        // Refresh parameters on boot
-        spListener.onSharedPreferenceChanged(sp, XiaomiSettings.dt2w)
+            // Refresh parameters on boot
+            spListener.onSharedPreferenceChanged(sp, XiaomiSettings.dt2w)
     }
 }

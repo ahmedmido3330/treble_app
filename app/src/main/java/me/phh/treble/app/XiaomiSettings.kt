@@ -15,15 +15,11 @@ import androidx.core.view.updatePadding
 
 object XiaomiSettings : Settings {
     val dt2w = "xiaomi_double_tap_to_wake"
-    val fodColor = "xiaomi_fod_color"  // Example additional preference
-    val dcDimming = "xiaomi_dc_dimming"  // Example additional preference
 
     override fun enabled(context: Context): Boolean {
-        val isXiaomi = Tools.vendorFp.run {
-            lowercase().startsWith("xiaomi/") ||
-            lowercase().startsWith("redmi/") ||
-            lowercase().startsWith("poco/")
-        }
+        val isXiaomi = Tools.vendorFp.toLowerCase().startsWith("xiaomi") ||
+        Tools.vendorFp.toLowerCase().startsWith("redmi/") ||
+        Tools.vendorFp.toLowerCase().startsWith("poco/")
         Log.d("PHH", "XiaomiSettings enabled() called, isXiaomi = $isXiaomi")
         return isXiaomi
     }
@@ -37,7 +33,7 @@ class XiaomiSettingsFragment : PreferenceFragment() {
         if (XiaomiSettings.enabled(context)) {
             Log.d("PHH", "Loading Xiaomi fragment ${XiaomiSettings.enabled(context)}")
 
-            // Bind preference summaries to values
+            // Exemplo de uso de bindPreferenceSummaryToValue
             findPreference(XiaomiSettings.dt2w)?.let {
                 SettingsActivity.bindPreferenceSummaryToValue(it)
             }
@@ -51,8 +47,8 @@ class XiaomiSettingsFragment : PreferenceFragment() {
         listView?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = false // importante
-            setPadding(32, 64, 32, 32) // padding fixo mais seguro
+            clipToPadding = false
+            setPadding(32, 64, 32, 32)
         }
     }
 }
