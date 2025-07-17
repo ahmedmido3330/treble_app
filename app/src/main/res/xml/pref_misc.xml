@@ -20,12 +20,6 @@
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
-            android:key="key_misc_treat_virtual_sensors_as_real"
-            android:title="@string/misc3"
-            android:summary="@string/msic3_s" />
-        <SwitchPreference
-            android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
             android:key="key_misc_disable_sae_upgrade"
             android:title="@string/misc4"
             android:summary="@string/misc4_s" />
