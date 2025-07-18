@@ -17,8 +17,6 @@ object MiscSettings : Settings {
     val launcher3 = "key_misc_launcher3"
     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
     val storageFUSE = "key_misc_storage_fuse"
-    val securize = "key_misc_securize"
-    val secureAdb = "key_misc_secure_adb"
     val disableDisplayDozeSuspend = "key_misc_disable_display_doze_suspend"
     val disableExpensiveRenderingMode = "key_misc_disable_expensive_rendering_mode"
     val unihertzdt2w = "key_misc_unihertz_dt2w"
