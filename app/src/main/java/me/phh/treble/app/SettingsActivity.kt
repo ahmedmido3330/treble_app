@@ -1,7 +1,5 @@
 package me.phh.treble.app
 
-import android.app.Activity
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.os.UserHandle
@@ -10,11 +8,15 @@ import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import android.app.Fragment
 
-class SettingsActivity : Activity() {
+class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         applicationContext.startServiceAsUser(
             Intent(applicationContext, EntryService::class.java), UserHandle.SYSTEM
         )
@@ -24,17 +26,27 @@ class SettingsActivity : Activity() {
             .replace(android.R.id.content, SettingsFragment())
             .commit()
         }
-
-        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                if (fragmentManager.backStackEntryCount > 0) {
+                    fragmentManager.popBackStack()
+                } else {
+                    finish()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (fragmentManager.backStackEntryCount > 0) {
+            fragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
         }
     }
 
@@ -43,20 +55,17 @@ class SettingsActivity : Activity() {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_headers)
 
-            // Check enabled status for each preference and remove if not enabled
             val context = activity ?: return
             val checkEnabled = EntryService.getEnabledPreferences(context)
             checkEnabled.forEach { (key, isEnabled) ->
                 if (!isEnabled) {
                     val preference = findPreference(key)
-                    preference?.let {
-                        val parent = preference.parent
-                        parent?.removePreference(preference)
+                    preference?.let { pref ->
+                        pref.parent?.removePreference(pref)
                     }
                 }
             }
 
-            // Define a map of preference keys to their corresponding fragment classes
             val setFragments = mapOf(
                 "mydevice_settings" to "me.phh.treble.app.MyDeviceSettingsFragment",
                 "oneplus_settings" to "me.phh.treble.app.OnePlusSettingsFragment",
@@ -80,16 +89,13 @@ class SettingsActivity : Activity() {
                 "camera_settings" to "me.phh.treble.app.CameraSettingsFragment",
                 "misc_settings" to "me.phh.treble.app.MiscSettingsFragment",
                 "ui_settings" to "me.phh.treble.app.UiSettingsFragment",
-                "debug_settings" to "me.phh.treble.app.DebugSettingsFragment",
+                "debug_settings" to "me.phh.treble.app.DebugSettingsFragment"
             )
 
-            // Setup click listeners for each fragment using the map
             for ((preferenceKey, fragmentClassName) in setFragments) {
                 findPreference(preferenceKey)?.setOnPreferenceClickListener {
-                    activity?.actionBar?.title = it.title
-                    val fragment = Fragment.instantiate(activity, fragmentClassName)
+                    val fragment = Class.forName(fragmentClassName).getConstructor().newInstance() as Fragment
                     fragment.arguments = it.extras
-
                     fragmentManager.beginTransaction()
                     .replace(android.R.id.content, fragment)
                     .addToBackStack(null)
@@ -104,12 +110,7 @@ class SettingsActivity : Activity() {
             listView.divider = null
             listView.dividerHeight = 0
             listView.clipToPadding = true
-            listView.setPadding(32, listView.paddingTop, 32, listView.paddingBottom) // Adiciona 16dp de padding lateral
-        }
-
-        override fun onResume() {
-            super.onResume()
-            activity?.actionBar?.title = "Treble Settings"
+            listView.setPadding(32, listView.paddingTop, 32, listView.paddingBottom)
         }
     }
 
@@ -118,7 +119,6 @@ class SettingsActivity : Activity() {
             preference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { pref, newValue ->
                 val stringValue = newValue.toString()
                 val defaultSummary = pref.summary
-
                 pref.summary = when (pref) {
                     is ListPreference -> {
                         val index = pref.findIndexOfValue(stringValue)
@@ -127,26 +127,20 @@ class SettingsActivity : Activity() {
                     is EditTextPreference -> {
                         if (stringValue.isNotEmpty()) stringValue.toIntOrNull()?.toString() ?: stringValue else defaultSummary
                     }
-                    else -> {
-                        if (stringValue.isNotEmpty()) stringValue else defaultSummary
-                    }
+                    else -> if (stringValue.isNotEmpty()) stringValue else defaultSummary
                 }
                 true
             }
 
             val preferenceManager = PreferenceManager.getDefaultSharedPreferences(preference.context)
             val rawValue = preferenceManager.all[preference.key]
-
-            // Verifica o tipo antes de chamar getString()
             val value = when (rawValue) {
                 is String -> rawValue
                 else -> {
-                    // Remove o valor antigo com tipo errado
                     preferenceManager.edit().remove(preference.key).apply()
                     ""
                 }
             }
-
             preference.onPreferenceChangeListener.onPreferenceChange(preference, value)
         }
     }

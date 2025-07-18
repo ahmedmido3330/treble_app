@@ -1,21 +1,16 @@
 package me.phh.treble.app
 
-import android.app.AlertDialog
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
-import android.os.SystemProperties
 import android.preference.Preference
 import android.preference.PreferenceFragment
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import java.io.File
-
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 
 object MiscSettings : Settings {
     val biometricstrong = "key_misc_biometricstrong"
@@ -29,21 +24,15 @@ object MiscSettings : Settings {
     val unihertzdt2w = "key_misc_unihertz_dt2w"
     val dt2w = "key_misc_dt2w"
 
-    override fun enabled(context: Context): Boolean {
-        Log.d("PHH", "Initializing Misc settings")
-        return true
-    }
-
+    override fun enabled(context: Context): Boolean = true
     fun isRoot() = File(Tools.phhsu).exists()
 }
 
 class MiscSettingsFragment : PreferenceFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addPreferencesFromResource(R.xml.pref_misc)
+        addPreferencesFromResource(R.xml.pref_misc) // Inicializa preferências aqui
 
-
-        // Check enabled status for each preference
         activity?.let { context ->
             EntryService.getEnabledPreferences(context).forEach { (key, isEnabled) ->
                 if (!isEnabled) {
@@ -53,19 +42,28 @@ class MiscSettingsFragment : PreferenceFragment() {
                 }
             }
         }
+    }
 
-        Log.d("PHH", "Misc settings loaded successfully")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_misc_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listView = view.findViewById<ListView>(android.R.id.list)
-        listView?.apply {
+        // Configura a Toolbar
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        (activity as? AppCompatActivity)?.setSupportActionBar(toolbar)
+        (activity as? AppCompatActivity)?.supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        // Configura o ListView
+        view.findViewById<ListView>(android.R.id.list)?.apply {
             divider = null
             dividerHeight = 0
-            clipToPadding = false // importante
-            setPadding(32, 64, 32, 32) // padding fixo mais seguro
+            clipToPadding = false
+            setPadding(32, 64, 32, 32)
         }
     }
 }
