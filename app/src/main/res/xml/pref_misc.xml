@@ -12,6 +12,11 @@
             android:title="@string/misc1"
             android:summaryOn="@string/msic1_s" />
         <SwitchPreference
+            android:defaultValue="false"
+            android:key="key_misc_treat_virtual_sensors_as_real"
+            android:title="@string/fingerprint_real_title"
+            android:summary="@string/fingerprint_real_summary" />
+        <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="0"
             android:key="key_misc_launcher3"

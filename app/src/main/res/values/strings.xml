@@ -390,5 +390,7 @@
     <string name="nubia_boost_gpu">Boost GPU</string>
     <string name="nubia_boost_ufs">Boost UFS</string>
     <string name="nubia_boost_ufs_summary_on">Increase Read/Write speed</string>
-    
+
+    <string name="fingerprint_real_title">Treat virtual sensors as real</string>
+    <string name="fingerprint_real_summary">Treat all virtual fingerprint sensors as real\nRequires a reboot</string>
 </resources>

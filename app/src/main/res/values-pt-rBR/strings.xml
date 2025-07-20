@@ -396,5 +396,8 @@
     <string name="nubia_boost_ufs">Melhorar UFS</string>
     <string name="nubia_boost_ufs_summary_on">Aumenta velocidade de leitura/gravação</string>
 
+    <string name="fingerprint_real_title">Trate os sensores virtuais como reais</string>
+    <string name="fingerprint_real_summary">Tratar todos os sensores de impressão digital virtuais como reais\nRequer reinicialização</string>
+
 
 </resources>
