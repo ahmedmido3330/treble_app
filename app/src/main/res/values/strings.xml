@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">🛠Treble Settings🛠🕵</string>
-    <string name="title_activity_settings">🛠Treble Settings🛠🕵</string>
-    <string name="title_activity_top_level">🛠Treble Settings🛠🕵</string>
+    <string name="app_name">Treble</string>
+    <string name="title_activity_settings">Treble</string>
+    <string name="title_activity_top_level">Treble</string>
     <string name="desc_activity_top_level">Device specific settings</string>
     <string name="continue_question">Continue?</string>
     <string name="title_activity_updater">Updater</string>
