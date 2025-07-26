@@ -26,6 +26,7 @@ class Samsung: EntryStartup {
         - accesibility: 0 no, 1 negative, 2 color_blind, 3 screen off, 4 grayscale, 5 grayscale_negative, 6 color blind hbm
         - night mode 1 <0-10> (enable and set level) or 0 0 (disable)
      */
+    lateinit var context: Context
     val spListener = SharedPreferences.OnSharedPreferenceChangeListener { sp, key ->
         when(key) {
             SamsungSettings.highBrightess -> {
@@ -142,6 +143,7 @@ val telephonyCallback: TelephonyCallback = object : TelephonyCallback(),
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun startup(ctxt: Context) {
+        context = ctxt
         if (!SamsungSettings.enabled()) return
 
         val handler = Handler(HandlerThread("SamsungThread").apply { start()}.looper)
