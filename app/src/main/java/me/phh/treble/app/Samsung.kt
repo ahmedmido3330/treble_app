@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi
 import java.io.File
 import android.telephony.SubscriptionManager
 
-
 class Samsung: EntryStartup {
     /*
     Here lies some documentations about stuff that cane be done on Samsung devices:
