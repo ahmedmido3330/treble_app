@@ -16,32 +16,32 @@ object Misc: EntryStartup {
         when(key) {
             MiscSettings.biometricstrong -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.biometricstrong", if (value) "true" else "false")
+                safeSetprop("persist.sys.phh.biometricstrong", if (value) "true" else "false")
             }
             MiscSettings.securize -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.securize", if (value) "1" else "0")
+                safeSetprop("persist.sys.phh.securize", if (value) "1" else "0")
             }
             MiscSettings.launcher3 -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.launcher3", if (value) "true" else "false")
+                safeSetprop("persist.sys.phh.launcher3", if (value) "true" else "false")
             }
             MiscSettings.disableSaeUpgrade -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.wifi_disable_sae", if (value) "true" else "false")
+                safeSetprop("persist.sys.phh.wifi_disable_sae", if (value) "true" else "false")
             }
             MiscSettings.storageFUSE -> {
                 val value = sp.getBoolean(key, false)
                 Log.d("PHH", "Setting storageFUSE to $value")
-                SystemProperties.set("persist.sys.fflag.override.settings_fuse", if (!value) "true" else "false")
+                safeSetprop("persist.sys.fflag.override.settings_fuse", if (!value) "true" else "false")
             }
             MiscSettings.disableDisplayDozeSuspend -> {
                 val value = sp.getBoolean(key, true)
-                SystemProperties.set("persist.sys.phh.disable_display_doze_suspend", if (value) "true" else "false")
+                safeSetprop("persist.sys.phh.disable_display_doze_suspend", if (value) "true" else "false")
             }
             MiscSettings.disableExpensiveRenderingMode -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.disable_expensive_rendering_mode", if (value) "1" else "0")
+                safeSetprop("persist.sys.phh.disable_expensive_rendering_mode", if (value) "1" else "0")
             }
             MiscSettings.unihertzdt2w -> {
                 val value = sp.getBoolean(key, false)
@@ -76,5 +76,13 @@ object Misc: EntryStartup {
         spListener.onSharedPreferenceChanged(sp, MiscSettings.storageFUSE)
         spListener.onSharedPreferenceChanged(sp, MiscSettings.unihertzdt2w)
         spListener.onSharedPreferenceChanged(sp, MiscSettings.dt2w)
+    }
+}
+
+fun safeSetprop(key: String, value: String) {
+    try {
+        SystemProperties.set(key, value)
+    } catch (e: Exception) {
+        Log.e("PHH", "Failed to set system property $key to $value", e)
     }
 }
